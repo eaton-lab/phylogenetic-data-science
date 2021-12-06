@@ -26,7 +26,8 @@ theme:
     - navigation.tracking
     # - toc.integrate             # right-hav is always in toc
     - search.highlight
-    - search.suggest    
+    - search.suggest
+    - content.code.annotate # 
     # - navigation.indexes
     # - navigation.sections
     # - navigation.expand
@@ -53,6 +54,7 @@ markdown_extensions:
   - def_list
   - footnotes
   - meta
+  - tables
   - md_in_html
   - toc:
       permalink: true
@@ -73,6 +75,7 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences
+  - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.tasklist:
@@ -85,55 +88,74 @@ plugins:
 nav:
   - About/Ethos: index.md
   - Installation/Software: installation.md
-  - Python Bootcamp: 
-    - Python Introduction: bootcamp/python-introduction.md
-    - Python Style Guide: bootcamp/python-style-guide.md
-    - Python Data Science: python-datascience.md
-    - Jupyter and Binder: jupyter-and-binder.md
-    - Jit compilation: jit-compile.md
-    - Packaging: packaging.md
+  
+  - 0 - Python Bootcamp: 
+    - 0.0 - Python Introduction: bootcamp/python-introduction.md
+    - 0.1 - Python Style Guide: bootcamp/python-style-guide.md
+    - 0.2 - Python Data Science: bootcamp/python-datascience.md
+    - 0.3 - Python Jupyter/Binder: bootcamp/jupyter-and-binder.md
+    - 0.4 - Python Jit compilation: bootcamp/jit-compile.md
+    - 0.5 - Python Algorithms: bootcamp/python-algorithms.md  # dynamic, iteration, 
+    - 0.6 - Python Packaging: bootcamp/packaging.md
 
-  - Introduction (Ch. 1-4):
-    - 1 - Trees as data:
-      - 1.1 - Introduction: chapter-1/1.1-introduction.md
-      - 1.2 - Tree Thinking: chapter-1/1.2-tree-thinking.md
-      - 1.3 - Visualization: chapter-1/1.3-visualization.md
-      - 1.4 - Code - Tree class: chapter-1/1.4-code-tree-class.md
-      - 1.5 - Code - Tree layout: 1.5-tree-layout.md
-      - Reading and Exercises: 1-reading-list.md
+  - 1 - Trees as data:
+    - 1.1 - Introduction: chapter-1/1.1-introduction.md
+    - 1.2 - Tree Thinking: chapter-1/1.2-tree-thinking.md
+    - 1.3 - Visualization: chapter-1/1.3-visualization.md
+    - 1.4 - Code - Node class: chapter-1/1.4-code-node-class.md
+    - 1.5 - Code - Tree class: chapter-1/1.5-code-tree-class.md
+    - 1.6 - Exercises: chapter-1/1.6-exercises.md
 
-    - 2 - Trees as models:
-      - 2.0 - Tree as evolutionary models: x.md
-      - 2.1 - Genealogies, Gene Trees, and Species Trees: y.md
-      - 2.2 - Tree Sequences and ARGs: z.md
-      - 2.3 - Genetic linkage?: linkm.md
-      - Reading and Exercises: 1-reading-list.md      
+  - 2 - Trees as models:
+    - 2.0 - Tree as evolutionary models: chapter-2/2.0-tree-models.md
+    - 2.1 - Genealogies, Gene Trees, and Species Trees: y.md
+    - 2.2 - Tree Sequences and ARGs: z.md
+    - 2.3 - Genetic linkage?: linkm.md
+    - Reading and Exercises: 1-reading-list.md      
 
-    - 3 - Genealogies:
-      - 3.0 - The Wright-Fisher Process: 3.0-wright-fisher.md
-      - 3.1 - Kingman Coalescent: 3.1-coalescent.md
-      - 3.2 - Coalescent simulations (msprime): 3.2-msprime.md
-      - 3.3 - Demographic models: 3.3-demography.md
-      - 3.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
-      - Reading and Exercises: 1-reading-list.md            
+  - 3 - Genealogies:
+    - 3.0 - The Wright-Fisher Process: 3.0-wright-fisher.md
+    - 3.1 - Kingman Coalescent: 3.1-coalescent.md
+    - 3.2 - Coalescent simulations (msprime): 3.2-msprime.md
+    - 3.3 - Demographic models: 3.3-demography.md
+    - 3.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
+    - 3.x - Code - Coalescent probability: chapter-3/3.x-coalescent-probability.md
+    - 3.x - Code - MSC probability: chapter-3/3.x-MSC-probability.md    
+    - Exercises: chapter-3/3-reading-list.md
+    - Further Reading: ...
 
-    - 4 - Mutations:
-      - 4.0 - 'infinite-sites' mutations: 4.0-mutations.md
-      - 4.1 - Markov substitution models: 4.1-substituions.md
-      - 4.2 - Statistical properties of Markov models: 4.2-markov-models.md
-      - Reading and Exercises: 1-reading-list.md      
+  - 4 - Mutations:
+    - 4.0 - 'infinite-sites' mutations: 4.0-mutations.md
+    - 4.1 - Markov substitution models: 4.1-substituions.md
+    - 4.2 - Statistical properties of Markov models: 4.2-markov-models.md
+    - Reading and Exercises: 1-reading-list.md      
 
-  - Tree Inference (Ch. 5-10):
-    - 5 - Inference (Parsimony):
-      - 5.0 - Parsimony: xx.md
-      - 5.1 - Scoring parsimony: yy.md
-      - 5.2 - Tree Space: yy.md
-      - 5.3 - Inferring: xx.ipynb
-      - Reading and Exercises: 1-reading-list.md            
+  - 5 - Data:
+    - 5.1 - data formats: 5.1-data-formats.md
+    - 5.2 - strings, tables, and matrices: 5.2-strings-and-matrices.md
+    - 5.3 - SNP data (variant call format): 5.3-variant
+    - x.x - Code - simulating data/traits: x.x-simulating-traits.md
+    - x.x - Code - sequence alignment: x.x-sequence-alignment.md
+    - x.x - Code - converting file formats: x.x-converting-file-formats.md
+    - Exercises: read, write, parse, find, and clean phylip, fasta, fastq, and vcf data.
 
-    - 6 - Inference (Likelihood):
-      - 6.0 - Maximum Likelihood: xx.md
-      - 6.1 - Genealogies: yy.md
-      - 6.2 - Sequences: yy.md
-      - 6.3 - Inferring: xx.ipynb
-      - Reading and Exercises: 1-reading-list.md
+  - 6 - Inference (Distance-based):
+    - x.x - Distance based trees: ...
+    - x.x - Code - UPGMA: ...
+    - x.x - Code - Neighbor Joining: ...
+    - Exercises: ...
+    - Reading: ...
+
+  - 7 - Inference (Parsimony):
+    - 5.0 - Maximum Parsimony: xx.md
+    - 5.1 - Scoring parsimony: yy.md
+    - 5.2 - Tree Space: yy.md
+    - 5.3 - Inferring: xx.ipynb
+    - Reading and Exercises: 1-reading-list.md            
+
+  - 8 - Inference (Likelihood):
+    - 6.0 - Maximum Likelihood: xx.md
+    - 6.1 - Genealogies: yy.md
+    - 6.2 - Sequences: yy.md
+    - 6.3 - Inferring: xx.ipynb
+    - Reading and Exercises: 1-reading-list.md
