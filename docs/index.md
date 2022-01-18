@@ -33,7 +33,8 @@ This textbook is completely free and open source, and is intended to be a
 living document that will evolve and improve over time. Anyone can contribute
 to either the text or code, and we strongly encourage everyone to consider
 contributing if you find any errors, or have ideas for improvements. 
-You can easily contribute to this textbook by clicking the pencil icon (:material-pencil:) in the upper right corner of any page. This will open 
+You can easily contribute to this textbook by clicking the pencil icon 
+(:material-pencil:) in the upper right corner of any page. This will open 
 a Markdown document of the page which you can fork, edit, and contribute 
 back through a pull request.
 

@@ -1,4 +1,4 @@
-site_name: Phylogenetic Data Science
+site_name: Phylogenetic Data Science (IN DEVELOPMENT)
 repo_url: https://github.com/eaton-lab/phylogenetic-data-science
 edit_uri: edit/master/docs/
 
@@ -89,14 +89,19 @@ nav:
   - About/Ethos: index.md
   - Installation/Software: installation.md
   
-  - 0 - Python Bootcamp: 
-    - 0.0 - Python Introduction: bootcamp/python-introduction.md
-    - 0.1 - Python Style Guide: bootcamp/python-style-guide.md
-    - 0.2 - Python Data Science: bootcamp/python-datascience.md
-    - 0.3 - Python Jupyter/Binder: bootcamp/jupyter-and-binder.md
-    - 0.4 - Python Jit compilation: bootcamp/jit-compile.md
-    - 0.5 - Python Algorithms: bootcamp/python-algorithms.md  # dynamic, iteration, 
-    - 0.6 - Python Packaging: bootcamp/packaging.md
+  - 0 - Coding Bootcamp:
+    - Getting started: bootcamp/getting-started.md
+    - 0.0 - Installation (conda): bootcamp/0.0-installation-conda.md
+    - 0.1 - Python Jupyter/Binder: bootcamp/0.1-jupyter-and-binder.md
+    - 0.2 - Python types: bootcamp/0.2-python-types.md
+    - 0.3 - Python functions: bootcamp/0.3-python-funcs.md
+    - 0.4 - Python classes: bootcamp/0.4-python-classes.md
+    - 0.5 - Python style: bootcamp/0.5-python-style.md
+    # - 0.6 - 
+    # - 0.2 - Python Data Science: bootcamp/python-datascience.md
+    # - 0.4 - Python Jit compilation: bootcamp/jit-compile.md
+    # - 0.5 - Python Algorithms: bootcamp/python-algorithms.md  # dynamic, iteration, 
+    # - 0.6 - Python Packaging: bootcamp/packaging.md
 
   - 1 - Trees as data:
     - 1.1 - Introduction: chapter-1/1.1-introduction.md
@@ -111,7 +116,7 @@ nav:
     - 2.1 - Genealogies, Gene Trees, and Species Trees: y.md
     - 2.2 - Tree Sequences and ARGs: z.md
     - 2.3 - Genetic linkage?: linkm.md
-    - Reading and Exercises: 1-reading-list.md      
+    - Reading and Exercises: 1-reading-list.md
 
   - 3 - Genealogies:
     - 3.0 - The Wright-Fisher Process: 3.0-wright-fisher.md

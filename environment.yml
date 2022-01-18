@@ -1,0 +1,16 @@
+name: phylogenetic-datascience
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python>=3.7
+  - jupyter
+  - numpy
+  - pandas
+  - scipy
+  - numba
+  - loguru
+  - toytree>=3.0
+  - msprime>=1.0
+  - raxml
+  # ...TODO
