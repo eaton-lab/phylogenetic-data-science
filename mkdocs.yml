@@ -88,7 +88,7 @@ plugins:
 nav:
   - About/Ethos: index.md
   - Installation/Software: installation.md
-  
+  - Columbia course: course.md
   - 0 - Coding Bootcamp:
     - Getting started: bootcamp/getting-started.md
     - 0.0 - Installation (conda): bootcamp/0.0-installation-conda.md
