@@ -17,3 +17,5 @@ dependencies:
   - pip
   - pip:
     - git+https://github.com/eaton-lab/toytree.git@toy3#egg=toytree
+
+
