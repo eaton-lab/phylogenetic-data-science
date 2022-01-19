@@ -10,6 +10,7 @@ dependencies:
   - scipy
   - numba
   - loguru
+  - requests
   # - msprime>=1.0
   # - raxml
   # - toytree>=3.0
