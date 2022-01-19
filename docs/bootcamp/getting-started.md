@@ -25,6 +25,6 @@ into learning Python coding then you can skip lesson 0.0 on
 
 [tutorial]: https://docs.python.org/3/tutorial/
 [documentation]: https://docs.python.org/3/
-[software installation]: ../0.0-installation-conda.md
-[jupyter notebooks]: ../0.1-jupyter-and-binder.md
+[software installation]: ./0.0-installation-conda.md
+[jupyter notebooks]: ./0.1-jupyter-and-binder.md
 
