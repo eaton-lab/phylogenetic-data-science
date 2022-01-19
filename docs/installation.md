@@ -16,7 +16,7 @@ with all required software pre-installed. You can find links to these
 notebooks in each chapter, and all links are also listed at the end of 
 each chapter in the table of contents. As an example, the following link
 connects you to a notebook from the Coding bootcamp on learning to 
-use Jupyter: [(:material-notebook: jupyter-exercise.ipynb)](...).
+use Jupyter: [(:material-notebook: jupyter-exercise.ipynb)](https://mybinder.org/v2/gh/eaton-lab/phylogenetic-data-science/HEAD?filepath=docs%2Fbootcamp%2Fnotebooks%2Fjupyter-intro.ipynb).
 
 Nevertheless, you may wish to install the software dependencies 
 and run code from the textbook exercises locally on your computer, which 
