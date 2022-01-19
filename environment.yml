@@ -10,7 +10,8 @@ dependencies:
   - scipy
   - numba
   - loguru
-  - toytree>=3.0
-  - msprime>=1.0
-  - raxml
-  # ...TODO
+  # - msprime>=1.0
+  # - raxml
+  # - toytree>=3.0
+  - pip:
+    - git+https://github.com/eaton-lab/toytree.git@toy3#egg=toytree
