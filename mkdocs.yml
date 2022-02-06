@@ -95,7 +95,7 @@ nav:
     - 0.1 - Python Jupyter/Binder: bootcamp/0.1-jupyter-and-binder.md
     - 0.2 - Python types: bootcamp/0.2-python-types.md       # add link to vanderplas.
     - 0.3 - Python functions: bootcamp/0.3-python-funcs.md   # type hints at own link.
-    - 0.4 - Python classes: bootcamp/0.4-python-classes.md
+    - 0.4 - Python classes: bootcamp/0.4-python-classes.md   # 
     - 0.5 - Python style: bootcamp/0.5-python-style.md
     # - 0.6 - Python iterators: bootcamp/0.6-python-iterators.md
     # - 0.x - Python Data Science: bootcamp/python-datascience.md
@@ -106,9 +106,10 @@ nav:
     - x.1 - Introduction: chapter-1/1.1-introduction.md
     - x.2 - Tree Thinking: chapter-1/1.2-tree-thinking.md
     - x.3 - Visualization: chapter-1/1.3-visualization.md
-    - x.4 - Trees as objects: chapter-1/1.4-features-of-trees.md
-    - x.5 - Code - Node class: chapter-1/1.4-code-node-class.md
-    - x.6 - Code - Tree class: chapter-1/1.5-code-tree-class.md
+    - 1.4 - Trees as data: chapter-1/1.4-features-of-trees.md
+    - 1.5 - Code - Node class: chapter-1/1.5-code-node-class.md
+    - 1.5 - Code - Tree traversal: chapter-1/1.6-code-tree-traversal.md
+    - 1.6 - Code - Tree class: chapter-1/1.6-code-tree-class.md
     - x.7 - Exercises: chapter-1/1.6-exercises.md
 
   - 2 - Trees as models:
@@ -119,14 +120,14 @@ nav:
     - Reading and Exercises: 1-reading-list.md
 
   - 3 - Genealogies:
-    - x.x - Modeling Evolution: chapter-3/3.x-modeling-HW.md
-    - x.0 - The Wright-Fisher Process: chapter-3/3.0-wright-fisher.md
-    - x.1 - Kingman Coalescent: chapter-3/3.1-coalescent.md
+    - 3.x - Modeling Evolution: chapter-3/3.x-modeling-HW.md
+    - 3.0 - The Wright-Fisher Process: chapter-3/3.0-wright-fisher.md
+    - 3.1 - Kingman Coalescent: chapter-3/3.1-coalescent.md
     - x.2 - Coalescent simulations (msprime): 3.2-msprime.md
     - x.3 - Demographic models: 3.3-demography.md
     - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
     - x.x - Code - Coalescent probability: chapter-3/3.x-coalescent-probability.md
-    - x.x - Code - MSC probability: chapter-3/3.x-MSC-probability.md    
+    - x.x - Code - MSC probability: chapter-3/3.x-MSC-probability.md
     - Exercises: chapter-3/3-reading-list.md
     - Further Reading: ...
 
