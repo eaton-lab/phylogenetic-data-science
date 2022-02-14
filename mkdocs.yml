@@ -106,64 +106,108 @@ nav:
     - x.1 - Introduction: chapter-1/1.1-introduction.md
     - x.2 - Tree Thinking: chapter-1/1.2-tree-thinking.md
     - x.3 - Visualization: chapter-1/1.3-visualization.md
-    - 1.4 - Trees as data: chapter-1/1.4-features-of-trees.md
+    - 1.4 - Tree data structure: chapter-1/1.4-features-of-trees.md
     - 1.5 - Code - Node class: chapter-1/1.5-code-node-class.md
     - 1.6 - Code - Tree traversal: chapter-1/1.6-code-tree-traversal.md
     - 1.7 - Code - Tree class: chapter-1/1.7-code-tree-class.md
     - x.7 - Exercises: chapter-1/1.6-exercises.md
 
-  - 2 - Trees as models:
-    - x.0 - Tree as evolutionary models: chapter-2/2.0-tree-models.md
-    - x.1 - Genealogies, Gene Trees, and Species Trees: y.md
-    - x.2 - Tree Sequences and ARGs: z.md
-    - x.3 - Genetic linkage?: linkm.md
+  - 2 - Evolutionary models:
+    - 2.0 - Modeling evolution: chapter-2/2.0-modeling-evolution.md
+      # - x.1 - everything is descended from an ancestor
+      # - x.1 - whether or not we can infer that past is a separate question.  
+    - 2.0 - Wright-Fisher Process: chapter-2/2.1-wright-fisher.md
+      # - x.1 - assumptions on evolutionary process
+      # - x.1 - start by setting only population size and mutation
+      # - x.1 - we can make predictions about genetic diversity
+      # - x.1 - modeling and simulations
+    - 2.1 - The Coalescent: chapter-2/2.1-the-coalescent.md
+      # - x.1 - why coalescent thinking is powerful
+      # - x.2 - what is the coalescent model
+      # - x.3 - why is this useful?
+      # - x.4 - some math examples
+      # - x.5 - probability statement, one rep is weak, many reps is strong.
+      # - x.6 - retiterate assumptions and constraints.
+    - 2.2 - Coalescent Simulation: chapter-2/2.2-simulation.md
+      # - x.1 - coalescent simulation software exists
+      # - x.2 - 
+    - 2.2 - Species Trees: chapter-2/2.3-species-trees.md
+      # - x.1 - 
+    - 2.3 - Tree Sequences: chapter-2/2.4-tree-sequences.md
+      # - x.1 - Recombinaiton
+      # - x.2 - Genetic linkage
+      # - x.3 - ARGs
     - Reading and Exercises: 1-reading-list.md
 
-  - 3 - Genealogies:
-    - 3.x - Modeling Evolution: chapter-3/3.x-modeling-HW.md
-    - 3.0 - The Wright-Fisher Process: chapter-3/3.0-wright-fisher.md
-    - 3.1 - Kingman Coalescent: chapter-3/3.1-coalescent.md
-    - x.2 - Coalescent simulations (msprime): 3.2-msprime.md
-    - x.3 - Demographic models: 3.3-demography.md
-    - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
-    - x.x - Code - Coalescent probability: chapter-3/3.x-coalescent-probability.md
-    - x.x - Code - MSC probability: chapter-3/3.x-MSC-probability.md
-    - Exercises: chapter-3/3-reading-list.md
-    - Further Reading: ...
-
-  - 4 - Mutations:
-    - x.0 - 'infinite-sites' mutations: 4.0-mutations.md
-    - x.1 - Markov substitution models: 4.1-substituions.md
-    # x.x - outgroups, orthology/homology, fixation.
-    - x.2 - Statistical properties of Markov models: 4.2-markov-models.md
+  - 3 - Mutation Models:
+    - x.0 - modeling mutation: 3.0-mutations.md
+      # - x.x - what is a mutation, substitution, allele, haplotype (terminology)
+      # - x.x - orthology, homology, alignment
+      # - x.x - orthology, homology, alignment      
+    - x.0 - infinite-sites model: 3.0-mutations.md
+      # - x.x - assumptions of this model.
+      # - x.x - when is it used, and why.
+      # - x.x - demonstrate its shortcomings using simulation
+    - x.1 - discrete models: 3.1-discrete.md
+      # - x.x - assumptions of this model.
+      # - x.x - when is it used, and why.
+      # - x.x - demonstrate its shortcomings compared to infinite (speed?)
+    - x.2 - Markov models: 3.2-markov-models.md
+      # - x.x - statistical properties of Markov models
+    - x.3 - Other models: 3.x-other-models.md
+      # - x.x - phenotypic, stepwise, etc.
     - Reading and Exercises: 1-reading-list.md      
 
-  - 5 - Data:
-    - x.1 - data formats: 5.1-data-formats.md
-    - x.2 - strings, tables, and matrices: 5.2-strings-and-matrices.md
-    - x.3 - SNP data (variant call format): 5.3-variant
+  # - 3 - Genealogies:
+  #   - 3.x - Modeling Evolution: chapter-3/3.x-modeling-HW.md
+  #   - 3.1 - Kingman Coalescent: chapter-3/3.1-coalescent.md
+  #   - x.2 - Coalescent simulations (msprime): 3.2-msprime.md
+  #   - x.3 - Demographic models: 3.3-demography.md
+  #   - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
+  #   - x.x - Code - Coalescent probability: chapter-3/3.x-coalescent-probability.md
+  #   - x.x - Code - MSC probability: chapter-3/3.x-MSC-probability.md
+  #   - Exercises: chapter-3/3-reading-list.md
+  #   - Further Reading: ...
+
+  - 4 - Data:
+    - x.1 - data formats: 4.1-data-formats.md
+    - x.2 - strings, tables, and matrices: 4.2-strings-and-matrices.md
+    - x.3 - SNP data (variant call format): 543-variant
     - x.x - Code - simulating data/traits: x.x-simulating-traits.md
     - x.x - Code - sequence alignment: x.x-sequence-alignment.md
     - x.x - Code - converting file formats: x.x-converting-file-formats.md
     - Exercises: read, write, parse, find, and clean phylip, fasta, fastq, and vcf data.
 
-  - 6 - Inference (Distance-based):
-    - x.x - Distance based trees: ...
-    - x.x - Code - UPGMA: ...
-    - x.x - Code - Neighbor Joining: ...
-    - Exercises: ...
-    - Reading: ...
+  - 5 - Phylogenetic Inference:
+    - x.0 - introduction: .
+    - x.1 - history: .
+    - x.2 - choosing a method: .
 
-  - 7 - Inference (Parsimony):
-    - x.0 - Maximum Parsimony: xx.md
-    - x.1 - Scoring parsimony: yy.md
-    - x.2 - Tree Space: yy.md
-    - x.3 - Inferring: xx.ipynb
-    - Reading and Exercises: 1-reading-list.md            
+  - 6 - Inference (Parsimony):
+    - 6.0 - Fitch Parsimony: chapter-6/6.0-fitch-parsimony.md
+    - 6.1 - Sankoff Parsimony: chapter-6/6.1-sankoff-parsimony.md
+    # - 6.2 - Code - heuristic search: .
+    # - 6.3 - Inferring: .
+    # - Reading and Exercises: .
+
+  - 7 - Inference (Distance-based):
+    - x.x - Distance based trees: .
+    - x.x - Code - UPGMA: .
+    - x.x - Code - Neighbor Joining: .
+    - Exercises: .
+    - Reading: .
 
   - 8 - Inference (Likelihood):
-    - x.0 - Maximum Likelihood: xx.md
-    - x.1 - Genealogies: yy.md
-    - x.2 - Sequences: yy.md
-    - x.3 - Inferring: xx.ipynb
-    - Reading and Exercises: 1-reading-list.md
+    - x.0 - Maximum Likelihood: .
+    - x.1 - Genealogies: .
+    - x.2 - Sequences: .
+    - x.3 - Inferring: .
+    - Reading and Exercises: .
+
+  - 9 - Multispecies Coalescent:
+    - x.x - Species trees: .
+    - x.x - Code - MSC likelihood: .
+    - x.x - Code - MSC model fit: .
+    - x.x - Tree search: .
+    - x.x - Examples: .
+
