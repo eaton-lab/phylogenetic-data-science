@@ -169,32 +169,45 @@ nav:
   #   - Exercises: chapter-3/3-reading-list.md
   #   - Further Reading: ...
 
-  - 5 - Data:
-    - x.1 - data formats: 5.1-data-formats.md
-    - x.2 - strings, tables, and matrices: 5.2-strings-and-matrices.md
-    - x.3 - SNP data (variant call format): 5.3-variant
+  - 4 - Data:
+    - x.1 - data formats: 4.1-data-formats.md
+    - x.2 - strings, tables, and matrices: 4.2-strings-and-matrices.md
+    - x.3 - SNP data (variant call format): 543-variant
     - x.x - Code - simulating data/traits: x.x-simulating-traits.md
     - x.x - Code - sequence alignment: x.x-sequence-alignment.md
     - x.x - Code - converting file formats: x.x-converting-file-formats.md
     - Exercises: read, write, parse, find, and clean phylip, fasta, fastq, and vcf data.
 
+  - 5 - Phylogenetic Inference:
+    - x.0 - introduction: .
+    - x.1 - history: .
+    - x.2 - choosing a method: .
+
   - 6 - Inference (Parsimony):
-    - x.0 - Maximum Parsimony: xx.md
-    - x.1 - Code - Fitch parsimony: yy.md
-    - x.2 - Code - heuristic search: yy.md
-    - x.3 - Inferring: xx.ipynb
-    - Reading and Exercises: 1-reading-list.md            
+    - 6.0 - Fitch Parsimony: chapter-6/6.0-fitch-parsimony.md
+    - 6.1 - Sankoff Parsimony: chapter-6/6.1-sankoff-parsimony.md
+    # - 6.2 - Code - heuristic search: .
+    # - 6.3 - Inferring: .
+    # - Reading and Exercises: .
 
   - 7 - Inference (Distance-based):
-    - x.x - Distance based trees: ...
-    - x.x - Code - UPGMA: ...
-    - x.x - Code - Neighbor Joining: ...
-    - Exercises: ...
-    - Reading: ...
+    - x.x - Distance based trees: .
+    - x.x - Code - UPGMA: .
+    - x.x - Code - Neighbor Joining: .
+    - Exercises: .
+    - Reading: .
 
   - 8 - Inference (Likelihood):
-    - x.0 - Maximum Likelihood: xx.md
-    - x.1 - Genealogies: yy.md
-    - x.2 - Sequences: yy.md
-    - x.3 - Inferring: xx.ipynb
-    - Reading and Exercises: 1-reading-list.md
+    - x.0 - Maximum Likelihood: .
+    - x.1 - Genealogies: .
+    - x.2 - Sequences: .
+    - x.3 - Inferring: .
+    - Reading and Exercises: .
+
+  - 9 - Multispecies Coalescent:
+    - x.x - Species trees: .
+    - x.x - Code - MSC likelihood: .
+    - x.x - Code - MSC model fit: .
+    - x.x - Tree search: .
+    - x.x - Examples: .
+

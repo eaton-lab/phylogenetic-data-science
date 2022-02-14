@@ -38,7 +38,7 @@ following guidelines:
 enlightened ideas as "*Beautiful is better than ugly*", *"Simple is better 
 than complex*", and "*Readability counts*".
 
-  ['Zen of Python']: https://www.python.org/dev/peps/pep-0020/#id2
+['Zen of Python']: https://www.python.org/dev/peps/pep-0020/#id2
 
 - All software and package versions are clearly shown and updated frequently.
 
