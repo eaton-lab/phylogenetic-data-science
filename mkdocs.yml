@@ -140,21 +140,21 @@ nav:
     - Reading and Exercises: 1-reading-list.md
 
   - 3 - Mutation Models:
-    - x.0 - modeling mutation: 3.0-mutations.md
+    - 3.x - modeling mutation: 3.0-mutations.md
       # - x.x - what is a mutation, substitution, allele, haplotype (terminology)
       # - x.x - orthology, homology, alignment
       # - x.x - orthology, homology, alignment      
-    - x.0 - infinite-sites model: 3.0-mutations.md
+    - 3.x - infinite-sites model: 3.0-mutations.md
       # - x.x - assumptions of this model.
       # - x.x - when is it used, and why.
       # - x.x - demonstrate its shortcomings using simulation
-    - x.1 - discrete models: 3.1-discrete.md
+    - 3.x - discrete models: 3.1-discrete.md
       # - x.x - assumptions of this model.
       # - x.x - when is it used, and why.
       # - x.x - demonstrate its shortcomings compared to infinite (speed?)
-    - x.2 - Markov models: 3.2-markov-models.md
+    - 3.2 - Markov models: chapter-3/3.2-markov-models.md
       # - x.x - statistical properties of Markov models
-    - x.3 - Other models: 3.x-other-models.md
+    - 3.x - Other models: 3.x-other-models.md
       # - x.x - phenotypic, stepwise, etc.
     - Reading and Exercises: 1-reading-list.md      
 
