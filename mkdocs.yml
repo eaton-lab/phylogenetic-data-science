@@ -112,6 +112,7 @@ nav:
     - 1.7 - Code - Tree class: chapter-1/1.7-code-tree-class.md
     - x.7 - Exercises: chapter-1/1.6-exercises.md
 
+
   - 2 - Evolutionary models:
     - 2.0 - Modeling evolution: chapter-2/2.0-modeling-evolution.md
       # - x.1 - everything is descended from an ancestor
@@ -124,26 +125,31 @@ nav:
     - 2.1 - The Coalescent: chapter-2/2.1-the-coalescent.md
       # - x.1 - why coalescent thinking is powerful
       # - x.2 - what is the coalescent model
+      # - 3.1 - Kingman Coalescent: 
       # - x.3 - why is this useful?
       # - x.4 - some math examples
       # - x.5 - probability statement, one rep is weak, many reps is strong.
       # - x.6 - retiterate assumptions and constraints.
     - 2.2 - Coalescent Simulation: chapter-2/2.2-simulation.md
       # - x.1 - coalescent simulation software exists
-      # - x.2 - 
+      # - x.x - Code - estimate Ne using equations
+      # - x.2 - demographic models
+      # - x.3 - ...
     - 2.2 - Species Trees: chapter-2/2.3-species-trees.md
       # - x.1 - 
+      # - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
+      # - x.x - Code - MSC probability...
     - 2.3 - Tree Sequences: chapter-2/2.4-tree-sequences.md
       # - x.1 - Recombinaiton
       # - x.2 - Genetic linkage
       # - x.3 - ARGs
     - Reading and Exercises: 1-reading-list.md
 
+
   - 3 - Mutation Models:
     - 3.x - modeling mutation: 3.0-mutations.md
       # - x.x - what is a mutation, substitution, allele, haplotype (terminology)
       # - x.x - orthology, homology, alignment
-      # - x.x - orthology, homology, alignment      
     - 3.x - infinite-sites model: 3.0-mutations.md
       # - x.x - assumptions of this model.
       # - x.x - when is it used, and why.
@@ -156,18 +162,8 @@ nav:
       # - x.x - statistical properties of Markov models
     - 3.x - Other models: 3.x-other-models.md
       # - x.x - phenotypic, stepwise, etc.
-    - Reading and Exercises: 1-reading-list.md      
+    - Reading and Exercises: 1-reading-list.md
 
-  # - 3 - Genealogies:
-  #   - 3.x - Modeling Evolution: chapter-3/3.x-modeling-HW.md
-  #   - 3.1 - Kingman Coalescent: chapter-3/3.1-coalescent.md
-  #   - x.2 - Coalescent simulations (msprime): 3.2-msprime.md
-  #   - x.3 - Demographic models: 3.3-demography.md
-  #   - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
-  #   - x.x - Code - Coalescent probability: chapter-3/3.x-coalescent-probability.md
-  #   - x.x - Code - MSC probability: chapter-3/3.x-MSC-probability.md
-  #   - Exercises: chapter-3/3-reading-list.md
-  #   - Further Reading: ...
 
   - 4 - Data:
     - x.1 - data formats: 4.1-data-formats.md
@@ -185,7 +181,9 @@ nav:
 
   - 6 - Inference (Parsimony):
     - 6.0 - Fitch Parsimony: chapter-6/6.0-fitch-parsimony.md
-    - 6.1 - Sankoff Parsimony: chapter-6/6.1-sankoff-parsimony.md
+    - 6.1 - Character matrices: chapter-6/6.1-fitch-multiple-traits.md
+    - 6.2 - Sankoff Parsimony: . 
+    # chapter-6/6.1-sankoff-parsimony.md
     # - 6.2 - Code - heuristic search: .
     # - 6.3 - Inferring: .
     # - Reading and Exercises: .
