@@ -127,7 +127,7 @@ nav:
       # - x.1 - start by setting only population size and mutation
       # - x.1 - we can make predictions about genetic diversity
       # - x.1 - modeling and simulations
-    - 2.3 - The Coalescent: chapter-2/2.3-the-coalescent.md
+    - 2.3 - The Coalescent: chapter-2/2.3-coalescent.md
       # - x.1 - why coalescent thinking is powerful
       # - x.2 - what is the coalescent model
       # - 3.1 - Kingman Coalescent: 
@@ -148,6 +148,7 @@ nav:
       # - x.1 - Recombinaiton
       # - x.2 - Genetic linkage
       # - x.3 - ARGs
+    - 2.x - Exercises: chapter-2/2.x-exercises.md
     # - Reading and Exercises: 1-reading-list.md
 
 
