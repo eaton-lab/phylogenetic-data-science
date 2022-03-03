@@ -17,7 +17,7 @@ theme:
       toggle:
         icon: material/lightbulb-outline
         name: Switch to dark mode
-  favicon: docs/images/favicon.ico
+  favicon: /images/favicon.ico
   icon:
     logo: material/library
 
@@ -37,11 +37,14 @@ extra_css:
   - stylesheets/extra.css
 extra_javascript:
   - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js  
 
 extra:
   analytics:
     provider: google
-    property: G-XXXXXXXXXX
+    property: G-HV34HZZD5N
   # version:
     # provider: mike
 
@@ -117,12 +120,14 @@ nav:
     - 2.0 - Modeling evolution: chapter-2/2.0-modeling-evolution.md
       # - x.1 - everything is descended from an ancestor
       # - x.1 - whether or not we can infer that past is a separate question.  
-    - 2.0 - Wright-Fisher Process: chapter-2/2.1-wright-fisher.md
+    - 2.1 - Idealized population: chapter-2/2.1-idealized-population.md
+
+    - 2.2 - Wright-Fisher Process: chapter-2/2.2-wright-fisher.md
       # - x.1 - assumptions on evolutionary process
       # - x.1 - start by setting only population size and mutation
       # - x.1 - we can make predictions about genetic diversity
       # - x.1 - modeling and simulations
-    - 2.1 - The Coalescent: chapter-2/2.1-the-coalescent.md
+    - 2.3 - The Coalescent: chapter-2/2.3-coalescent.md
       # - x.1 - why coalescent thinking is powerful
       # - x.2 - what is the coalescent model
       # - 3.1 - Kingman Coalescent: 
@@ -130,38 +135,61 @@ nav:
       # - x.4 - some math examples
       # - x.5 - probability statement, one rep is weak, many reps is strong.
       # - x.6 - retiterate assumptions and constraints.
-    - 2.2 - Coalescent Simulation: chapter-2/2.2-simulation.md
+    # - 2.2 - Coalescent Simulation: chapter-2/2.2-simulation.md
       # - x.1 - coalescent simulation software exists
       # - x.x - Code - estimate Ne using equations
       # - x.2 - demographic models
       # - x.3 - ...
-    - 2.2 - Species Trees: chapter-2/2.3-species-trees.md
+    # - 2.2 - Species Trees: chapter-2/2.3-species-trees.md
       # - x.1 - 
       # - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
       # - x.x - Code - MSC probability...
-    - 2.3 - Tree Sequences: chapter-2/2.4-tree-sequences.md
+    # - 2.3 - Tree Sequences: chapter-2/2.4-tree-sequences.md
       # - x.1 - Recombinaiton
       # - x.2 - Genetic linkage
       # - x.3 - ARGs
-    - Reading and Exercises: 1-reading-list.md
+    - 2.x - Exercises: chapter-2/2.x-exercises.md
+    # - Reading and Exercises: 1-reading-list.md
+
+
+# 1. how can we model a mutation: per generation a site one state to another: A->C 
+# 2. if this process occurs at many sites independently, then a starting sequence of DNA changes over time.
+# 3. on a tree, different samples share different starting states (MRCA).
+# 4. So, if this process occurs on a tree, then it leads to some sequences more similar than others.
+# 5. Demonstrate this.
+
+# 6. That process we just showed, represents a very simple MARKOV process.
+# 7. assumptions of this included equal rates.
+# 8. Could be different, e.g., we can describe diff rates w/ a matrix.
+# 9. Example...
+
+# 10. Using a Markov model is valuable b/c it can estimate historical process
+# 11. Examples: its used in ... DNA
+# 12. Compared to e.g., parsimony assumptions, where we count OBSERVABLE changes..
+  # this model can estimate the unobserved changes. Important b/c....
+# 13. Functions to show the loss of information over time.
 
 
   - 3 - Mutation Models:
-    - 3.x - modeling mutation: 3.0-mutations.md
-      # - x.x - what is a mutation, substitution, allele, haplotype (terminology)
-      # - x.x - orthology, homology, alignment
-    - 3.x - infinite-sites model: 3.0-mutations.md
-      # - x.x - assumptions of this model.
-      # - x.x - when is it used, and why.
-      # - x.x - demonstrate its shortcomings using simulation
-    - 3.x - discrete models: 3.1-discrete.md
-      # - x.x - assumptions of this model.
-      # - x.x - when is it used, and why.
-      # - x.x - demonstrate its shortcomings compared to infinite (speed?)
+    - 3.0 - Modeling Evolution: chapter-3/3.x-DNA-Markov.md
+      # Evolution and Information: 
+      # Molecular Evolution:
+    - 3.x - Probabilistic and Generative Models: .
+      # - assumptions of this model.
+      # - when is it used, and why.
+      # - demonstrate its shortcomings compared to infinite (speed?)
     - 3.2 - Markov models: chapter-3/3.2-markov-models.md
-      # - x.x - statistical properties of Markov models
+      # - statistical properties of Markov models
+      # - 
+    # - 3.x - Bioinformatics: .
+      # - x.x - mutation, substitution, allele, haplotype (terminology)
+      # - x.x - orthology, homology, alignment
     - 3.x - Other models: 3.x-other-models.md
       # - x.x - phenotypic, stepwise, etc.
+      # - x.x - infinite-sites model: .
+        # - x.x - assumptions of this model.
+        # - x.x - when is it used, and why.
+        # - x.x - demonstrate its shortcomings using simulation
     - Reading and Exercises: 1-reading-list.md
 
 
@@ -189,11 +217,14 @@ nav:
     # - Reading and Exercises: .
 
   - 7 - Inference (Distance-based):
-    - x.x - Distance based trees: .
-    - x.x - Code - UPGMA: .
-    - x.x - Code - Neighbor Joining: .
-    - Exercises: .
-    - Reading: .
+    - 7.0 - Distance based trees: chapter-7/7.0-introduction.md
+    - 7.1 - Code - Least-squares: chapter-7/7.1-least-squares.md
+    - 7.2 - Code - UPGMA: chapter-7/7.2-upgma.md
+    - 7.3 - Code - Neighbor Joining: chapter-7/7.3-neighbor-joining.md
+    - 7.4 - Applied examples: chapter-7/7.4-applied.md
+    - 7.5 - New Applications: chapter-7/7.5-new-applications.md 
+    # - Exercises: TODO
+    # - Reading: TODO
 
   - 8 - Inference (Likelihood):
     - x.0 - Maximum Likelihood: .
