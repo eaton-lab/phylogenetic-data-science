@@ -17,7 +17,7 @@ theme:
       toggle:
         icon: material/lightbulb-outline
         name: Switch to dark mode
-  favicon: docs/images/favicon.ico
+  favicon: /images/favicon.ico
   icon:
     logo: material/library
 
@@ -120,12 +120,14 @@ nav:
     - 2.0 - Modeling evolution: chapter-2/2.0-modeling-evolution.md
       # - x.1 - everything is descended from an ancestor
       # - x.1 - whether or not we can infer that past is a separate question.  
-    - 2.0 - Wright-Fisher Process: chapter-2/2.1-wright-fisher.md
+    - 2.1 - Idealized population: chapter-2/2.1-idealized-population.md
+
+    - 2.2 - Wright-Fisher Process: chapter-2/2.2-wright-fisher.md
       # - x.1 - assumptions on evolutionary process
       # - x.1 - start by setting only population size and mutation
       # - x.1 - we can make predictions about genetic diversity
       # - x.1 - modeling and simulations
-    - 2.1 - The Coalescent: chapter-2/2.1-the-coalescent.md
+    - 2.3 - The Coalescent: chapter-2/2.3-coalescent.md
       # - x.1 - why coalescent thinking is powerful
       # - x.2 - what is the coalescent model
       # - 3.1 - Kingman Coalescent: 
@@ -133,20 +135,21 @@ nav:
       # - x.4 - some math examples
       # - x.5 - probability statement, one rep is weak, many reps is strong.
       # - x.6 - retiterate assumptions and constraints.
-    - 2.2 - Coalescent Simulation: chapter-2/2.2-simulation.md
+    # - 2.2 - Coalescent Simulation: chapter-2/2.2-simulation.md
       # - x.1 - coalescent simulation software exists
       # - x.x - Code - estimate Ne using equations
       # - x.2 - demographic models
       # - x.3 - ...
-    - 2.2 - Species Trees: chapter-2/2.3-species-trees.md
+    # - 2.2 - Species Trees: chapter-2/2.3-species-trees.md
       # - x.1 - 
       # - x.4 - Species Tree simulations (ipcoal): 3.4-ipcoal.md
       # - x.x - Code - MSC probability...
-    - 2.3 - Tree Sequences: chapter-2/2.4-tree-sequences.md
+    # - 2.3 - Tree Sequences: chapter-2/2.4-tree-sequences.md
       # - x.1 - Recombinaiton
       # - x.2 - Genetic linkage
       # - x.3 - ARGs
-    - Reading and Exercises: 1-reading-list.md
+    - 2.x - Exercises: chapter-2/2.x-exercises.md
+    # - Reading and Exercises: 1-reading-list.md
 
 
 # 1. how can we model a mutation: per generation a site one state to another: A->C 
