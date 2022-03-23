@@ -12,6 +12,7 @@ dependencies:
   - loguru
   - requests
   - msprime>=1.0
+  - sympy
   # - raxml
   # - toytree>=3.0
   - pip
