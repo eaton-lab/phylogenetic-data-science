@@ -148,6 +148,7 @@ nav:
       # - x.1 - Recombinaiton
       # - x.2 - Genetic linkage
       # - x.3 - ARGs
+    - 2.4 - Coalescent simulation: chapter-2/2.4-coalescent-simulation.md      
     - 2.x - Exercises: chapter-2/2.x-exercises.md
     # - Reading and Exercises: 1-reading-list.md
 
@@ -190,6 +191,7 @@ nav:
         # - x.x - assumptions of this model.
         # - x.x - when is it used, and why.
         # - x.x - demonstrate its shortcomings using simulation
+        # - how to write this data using ipcoal? compute distances?
     - Reading and Exercises: 1-reading-list.md
 
 
@@ -206,6 +208,8 @@ nav:
     - x.0 - introduction: .
     - x.1 - history: .
     - x.2 - choosing a method: .
+    - x.3 - ...
+    - x.4 - ...
 
   - 6 - Inference (Parsimony):
     - 6.0 - Fitch Parsimony: chapter-6/6.0-fitch-parsimony.md
@@ -214,6 +218,7 @@ nav:
     # chapter-6/6.1-sankoff-parsimony.md
     # - 6.2 - Code - heuristic search: .
     # - 6.3 - Inferring: .
+    # - application: infinite sites NJ tree versus homoplasy... cite papers using NJ.
     # - Reading and Exercises: .
 
   - 7 - Inference (Distance-based):

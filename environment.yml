@@ -13,6 +13,7 @@ dependencies:
   - requests
   - msprime>=1.0
   - sympy
+  - raxml-ng
   # - raxml
   # - toytree>=3.0
   - pip
