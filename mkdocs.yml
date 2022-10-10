@@ -20,6 +20,8 @@ theme:
   favicon: /images/favicon.ico
   icon:
     logo: material/library
+    # admonition:
+      # <type>
 
   features:
     - navigation.instant
@@ -198,7 +200,7 @@ nav:
   - 4 - Data:
     - x.1 - data formats: 4.1-data-formats.md
     - x.2 - strings, tables, and matrices: 4.2-strings-and-matrices.md
-    - x.3 - SNP data (variant call format): 543-variant
+    # - x.3 - SNP data (variant call format): 543-variant
     - x.x - Code - simulating data/traits: x.x-simulating-traits.md
     - x.x - Code - sequence alignment: x.x-sequence-alignment.md
     - x.x - Code - converting file formats: x.x-converting-file-formats.md
@@ -239,9 +241,10 @@ nav:
     - Reading and Exercises: .
 
   - 9 - Multispecies Coalescent:
-    - x.x - Species trees: .
-    - x.x - Code - MSC likelihood: .
-    - x.x - Code - MSC model fit: .
-    - x.x - Tree search: .
-    - x.x - Examples: .
+    - 9.0 - Species trees: chapter-9/9.0-intro.md
+    - 9.1 - Coalescent likelihood: chapter-9/9.1-likelihood.md
+    - 9.2 - Genealogical thinking: chapter-9/9.2-genealogical.md
+    - 9.3 - Genetic thinking: chapter-9/9.2-genetics.md
+    - 9.4 - MSC likelihood: chapter-9/9.3-MSC.md
+    - Reading and Exercises: .    
 
