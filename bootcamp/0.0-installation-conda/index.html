@@ -1,0 +1,1982 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../getting-started/">
+      
+      
+        <link rel="next" href="../0.1-jupyter-and-binder/">
+      
+      <link rel="icon" href="/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>0.0 - Installation (conda) - Phylogenetic Data Science (IN DEVELOPMENT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HV34HZZD5N"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HV34HZZD5N",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HV34HZZD5N",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#installing-software-with-conda" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-header__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Phylogenetic Data Science (IN DEVELOPMENT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              0.0 - Installation (conda)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-nav__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Phylogenetic Data Science (IN DEVELOPMENT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About/Ethos
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation/Software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/" class="md-nav__link">
+        Columbia course
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          0 - Coding Bootcamp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          0 - Coding Bootcamp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          0.0 - Installation (conda)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        0.0 - Installation (conda)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-conda" class="md-nav__link">
+    What is conda?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-conda" class="md-nav__link">
+    Why use conda?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-conda-miniconda3" class="md-nav__link">
+    Install conda (miniconda3)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conda-and-path" class="md-nav__link">
+    Conda and $PATH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-packages-using-channels" class="md-nav__link">
+    Installing packages (using channels)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-an-environment" class="md-nav__link">
+    Creating an environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-environment-for-this-textbook" class="md-nav__link">
+    An environment for this textbook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-development-versions-temporary" class="md-nav__link">
+    Installing development versions (temporary)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.1-jupyter-and-binder/" class="md-nav__link">
+        0.1 - Python Jupyter/Binder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.2-python-types/" class="md-nav__link">
+        0.2 - Python types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.3-python-funcs/" class="md-nav__link">
+        0.3 - Python functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.4-python-classes/" class="md-nav__link">
+        0.4 - Python classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0.5-python-style/" class="md-nav__link">
+        0.5 - Python style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          1 - Trees as data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          1 - Trees as data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.1-introduction/" class="md-nav__link">
+        x.1 - Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.2-tree-thinking/" class="md-nav__link">
+        x.2 - Tree Thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.3-visualization/" class="md-nav__link">
+        x.3 - Visualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.4-features-of-trees/" class="md-nav__link">
+        1.4 - Tree data structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.5-code-node-class/" class="md-nav__link">
+        1.5 - Code - Node class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-code-tree-traversal/" class="md-nav__link">
+        1.6 - Code - Tree traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.7-code-tree-class/" class="md-nav__link">
+        1.7 - Code - Tree class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-exercises.md" class="md-nav__link">
+        x.7 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          2 - Evolutionary models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          2 - Evolutionary models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.0-modeling-evolution/" class="md-nav__link">
+        2.0 - Modeling evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.1-idealized-population/" class="md-nav__link">
+        2.1 - Idealized population
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.2-wright-fisher/" class="md-nav__link">
+        2.2 - Wright-Fisher Process
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.3-coalescent/" class="md-nav__link">
+        2.3 - The Coalescent
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.4-coalescent-simulation/" class="md-nav__link">
+        2.4 - Coalescent simulation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.x-exercises/" class="md-nav__link">
+        2.x - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          3 - Mutation Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          3 - Mutation Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.x-DNA-Markov.md" class="md-nav__link">
+        3.0 - Modeling Evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        3.x - Probabilistic and Generative Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.2-markov-models/" class="md-nav__link">
+        3.2 - Markov models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3.x-other-models.md" class="md-nav__link">
+        3.x - Other models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-reading-list.md" class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          4 - Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          4 - Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.1-data-formats.md" class="md-nav__link">
+        x.1 - data formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.2-strings-and-matrices.md" class="md-nav__link">
+        x.2 - strings, tables, and matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-simulating-traits.md" class="md-nav__link">
+        x.x - Code - simulating data/traits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-sequence-alignment.md" class="md-nav__link">
+        x.x - Code - sequence alignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-converting-file-formats.md" class="md-nav__link">
+        x.x - Code - converting file formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read, write, parse, find, and clean phylip, fasta, fastq, and vcf data." class="md-nav__link">
+        Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          5 - Phylogenetic Inference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          5 - Phylogenetic Inference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - history
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - choosing a method
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.3 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.4 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          6 - Inference (Parsimony)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          6 - Inference (Parsimony)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.0-fitch-parsimony/" class="md-nav__link">
+        6.0 - Fitch Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.1-fitch-multiple-traits/" class="md-nav__link">
+        6.1 - Character matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        6.2 - Sankoff Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          7 - Inference (Distance-based)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          7 - Inference (Distance-based)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.0-introduction/" class="md-nav__link">
+        7.0 - Distance based trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.1-least-squares/" class="md-nav__link">
+        7.1 - Code - Least-squares
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.2-upgma/" class="md-nav__link">
+        7.2 - Code - UPGMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.3-neighbor-joining/" class="md-nav__link">
+        7.3 - Code - Neighbor Joining
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.4-applied/" class="md-nav__link">
+        7.4 - Applied examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.5-new-applications/" class="md-nav__link">
+        7.5 - New Applications
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          8 - Inference (Likelihood)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          8 - Inference (Likelihood)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - Maximum Likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - Genealogies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - Sequences
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.3 - Inferring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+          9 - Multispecies Coalescent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          9 - Multispecies Coalescent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.0-intro.md" class="md-nav__link">
+        9.0 - Species trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.1-likelihood.md" class="md-nav__link">
+        9.1 - Coalescent likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genealogical.md" class="md-nav__link">
+        9.2 - Genealogical thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genetics.md" class="md-nav__link">
+        9.3 - Genetic thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.3-MSC.md" class="md-nav__link">
+        9.4 - MSC likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-conda" class="md-nav__link">
+    What is conda?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-use-conda" class="md-nav__link">
+    Why use conda?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install-conda-miniconda3" class="md-nav__link">
+    Install conda (miniconda3)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conda-and-path" class="md-nav__link">
+    Conda and $PATH
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-packages-using-channels" class="md-nav__link">
+    Installing packages (using channels)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-an-environment" class="md-nav__link">
+    Creating an environment
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-environment-for-this-textbook" class="md-nav__link">
+    An environment for this textbook
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installing-development-versions-temporary" class="md-nav__link">
+    Installing development versions (temporary)
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="installing-software-with-conda">Installing software with conda<a class="headerlink" href="#installing-software-with-conda" title="Permanent link">&para;</a></h1>
+<h2 id="what-is-conda">What is conda?<a class="headerlink" href="#what-is-conda" title="Permanent link">&para;</a></h2>
+<p><a href="https://docs.conda.io/en/latest/">Conda</a> is an open-source software management 
+tool for installing other software, as well as their dependencies, and 
+creating sandboxed environments for executing code. Using the <code>conda</code> command
+line tool you can use simple commands to search for software packages, select 
+specific versions, and install them locally on your machine. This automated
+process makes installing and removing software simple and reproducible which makes
+it easier to design, distribute and use working software.</p>
+<h2 id="why-use-conda">Why use conda?<a class="headerlink" href="#why-use-conda" title="Permanent link">&para;</a></h2>
+<p>The many advantages of using conda include:</p>
+<ul>
+<li>
+<p><strong>command-line convenience</strong>: the conda command line program allows you to 
+search for and install tools with simple commands that can even be written
+as scripts for automation. This makes it easy to replicate the set of software
+tools installed on one computer onto another machine. </p>
+</li>
+<li>
+<p><strong>finding dependencies</strong>: Almost every software program builds on and requires
+other software packages as dependencies. Rather than telling a user to go 
+find and install each of these dependencies on their own (a sure sign of 
+a poorly developed tool by today's standards) a software package manager
+can instead fetch and install of the dependencies for them. This might even
+include different dependencies or versions depending on their specific operating
+system. This is a very complex task and something conda does very well.</p>
+</li>
+<li>
+<p><strong>sandboxed directory</strong>: conda installs software into a <em>sandboxed</em> location 
+on your computer (usually a directory within <code>$HOME</code>), which is done purposefully
+to keep your conda software completely separate and isolated from your 
+system-wide software (which is usually in <code>/bin</code> or <code>/usr/bin</code>). 
+This gives you peace of mind to install, update, and remove packages as much
+as you want inside of your conda directory without having to worry that it 
+might ever impact your system programs. </p>
+</li>
+<li>
+<p><strong>environments</strong>: In addition to allowing you to install software programs into
+a sandboxed location, conda also allows you to keep many separate <em>environments</em>,
+where you can keep different sets of software or versions of them. This makes it easy 
+to test software tools across different version of dependencies, or to keep 
+software separate that uses different conflicting dependencies.</p>
+</li>
+</ul>
+<h2 id="install-conda-miniconda3">Install conda (miniconda3)<a class="headerlink" href="#install-conda-miniconda3" title="Permanent link">&para;</a></h2>
+<p>There are two flavors of conda that you can install: <code>Anaconda</code> and 
+<code>Miniconda</code>. Both include an installation of <code>Python</code> and the <code>conda</code> program 
+(which is written in Python) as well as a few dependencies of <code>conda</code>. 
+However, the two flavors differ in terms of which <em>other</em> tools come
+pre-loaded with these basics. <code>Anaconda</code> comes fully loaded with dozens of 
+commonly used Python packages, whereas <code>Miniconda</code> is totally minimal, and 
+doesn't come with anything extra at all. I always recommend installing 
+<code>Miniconda</code>, and later adding to it any software that you want to install. </p>
+<p>To install <code>Miniconda</code> follow the command-line instructions below, which are
+derived from the <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda docs</a>. When installing either flavor of <code>conda</code>
+it is important that you select the appropriate version for your operating
+system (e.g., MacOSX, Linux, Windows).</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>If you are on Windows I generally recommend installing <code>Windows Subsystem
+for Linux (WSL2)</code>, which allows you to run a fully functional Linux system
+inside of your Windows machine. From there, you can then run all of the 
+Linux-based installation instructions. In general this is much more 
+reliable for running scientific software, since many tools are not
+written for Windows.</p>
+</div>
+<p>If you do not yet have <code>conda</code> installed then copy and paste the following 
+code into your terminal to download and install <code>conda</code> into its default
+(recommended) location in a folder in your <code>$HOME</code> directory that will be
+named <code>miniconda3/</code>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux</label><label for="__tabbed_1_2">OSX</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># download installer script</span>
+wget<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+<span class="c1"># call the installer script in batch (-b) mode</span>
+bash<span class="w"> </span>Miniconda3-latest-Linux-x86_64.sh<span class="w"> </span>-b
+
+<span class="c1"># call the init script (see below for description of what this does.)</span>
+~/miniconda3/condabin/conda<span class="w"> </span>init
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><span class="c1"># download installer script (flag is a big letter o, not zero)</span>
+curl<span class="w"> </span>-O<span class="w"> </span>https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+
+<span class="c1"># call the installer script in batch (-b) mode</span>
+bash<span class="w"> </span>Miniconda3-latest-MacOSX-x86_64.sh<span class="w"> </span>-b
+
+<span class="c1"># call the init script (see below for description of what this does.)</span>
+~/miniconda3/condabin/conda<span class="w"> </span>init
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>For your terminal to find and detect the newly installed <code>conda</code> environment
+you can either re-init your terminal, or more simply, <strong>close your terminal
+and re-open it</strong>. Then, to validate that you have <code>conda</code> properly installed 
+you can run the following commands from your terminal:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># prints the path to your conda binary</span>
+which<span class="w"> </span>conda
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># prints information about your conda installation</span>
+conda<span class="w"> </span>info
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># prints the software currently installed in your conda directory</span>
+conda<span class="w"> </span>list
+</code></pre></div>
+<h2 id="conda-and-path">Conda and <code>$PATH</code><a class="headerlink" href="#conda-and-path" title="Permanent link">&para;</a></h2>
+<p>After running the commands above you will likely see a small change to
+the text that is shown before the cursor in your terminal. Perhaps it 
+shows something like <code>(base)</code>. This is telling you the name of the <code>conda</code>
+environment that you currently have loaded. An environment is simply a 
+subfolder within your <code>miniconda3/</code> directory where software is stored.
+You can create multiple environments with different sets of software for
+different projects. If you just installed <code>conda</code> then your base environment
+will hardly have any software in it.</p>
+<p>The purpose of having an environment <em>loaded</em> is to make software from 
+that particular folder accessible. This relates to the way that you shell
+looks for software, which is by looking in a set of specified folders in 
+order until it either finds the first occurrence of the requested software
+name, or no occurrence of it. This set of ordered folders is called your
+<code>PATH</code> variable, and you can view it from the command shell. Below I 
+show an example in a Linux shell:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># show your current shell PATH variable</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+
+<span class="c1"># /home/deren/miniconda3/bin:/home/deren/miniconda3/condabin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin</span>
+</code></pre></div>
+<p>This shows multiple paths to directories each separated by a colon. 
+You should notice that there are two references to <code>miniconda3</code> in the 
+<code>PATH</code>. One points to <code>.../miniconda3/condabin/...</code> and another to 
+<code>.../miniconda3/bin</code>. The former is the location where your
+<code>conda</code> binary is located -- the tool that is used to call <code>conda</code> commands
+including loading or deactivating environments. The second is a path
+to binaries (programs) in the base <code>conda</code> environment. This includes the 
+version of <code>Python</code> that is installed. </p>
+<p>Towards the end of the <code>PATH</code> you will find references to other directories 
+such as <code>/usr/bin</code>. These are places where <em>system-wide</em> software is 
+located. <code>Python</code> is also used by most operating systems to complete 
+mundane tasks, but that system-wide version is different from the one we 
+just installed -- they are installed in different places. So, when we now
+type <code>python</code> (the name of the program to start a <code>Python</code> interpreter) into 
+the terminal it needs to decide which of the multiple versions of <code>python</code> 
+present on the system it should execute. Because the binary in our 
+<code>miniconda3</code> directory is located <em>before</em> the path to the system-wide binary
+in our <code>PATH</code> variable the miniconda version will be loaded. </p>
+<p>We can verify this quickly by deactivating the <code>conda</code> environment, and then
+re-loading it. This is something worth becoming comfortable with. You want 
+to know which <code>conda</code> environment is loaded at any time so you know which 
+software versions you are working with (<em>this is why the env name is shown
+is the prompt of your terminal</em>).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># deactivate the current conda env</span>
+conda<span class="w"> </span>deactivate
+
+<span class="c1"># print the PATH now (`miniconda/bin` should be gone)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+
+<span class="c1"># re-activate the conda environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>base
+
+<span class="c1"># print the PATH again (`miniconda/bin` should be back)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$PATH</span>
+</code></pre></div>
+<p>Now that you have conda installed you can use it to install software, 
+create and load environments, and/or remove software and environments.
+See the following <a href="https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf">conda cheatsheet</a> for some tips on available commands.</p>
+<h2 id="installing-packages-using-channels">Installing packages (using channels)<a class="headerlink" href="#installing-packages-using-channels" title="Permanent link">&para;</a></h2>
+<p>Many many many software packages are available to install using <code>conda</code>. 
+The best way to find instructions to install a tool is to google search
+<em>'conda install tool-name'</em>. (You can also run the command <code>conda search toolname</code>
+from a terminal, but I find the former is generally faster).
+This will provide the proper instructions for installing the package, 
+including the name of a <em>channel</em> from which it should be installed. 
+Here is an example that will install the <code>requests</code> Python package from 
+the <code>conda-forge</code> channel.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># install the requests Python package from the conda-forge channel</span>
+conda<span class="w"> </span>install<span class="w"> </span>requests<span class="w"> </span>-c<span class="w"> </span>conda-forge
+</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The channel <code>conda-forge</code> is special in that it contains very up-to-date
+versions of most common Python packages. In this way, it serves as an 
+alternative to the standard channel (listing no channel at all). If you
+use <code>conda-forge</code> for some packages, it is generally recommended to use
+it for <em>all</em> of your packages, otherwise, you will continually have 
+versions of standard Python dependencies being switched back and forth
+between super up-to-date versions from conda-forge and not quite as 
+up-to-date versions from the standard channel. The easiest way to ensure
+that you don't forget to do this is to set <code>conda-forge</code> as your 
+<em>default channel</em>, which you can do with the following command:</p>
+<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>config<span class="w"> </span>--add<span class="w"> </span>channels<span class="w"> </span>conda-forge
+</code></pre></div>
+</div>
+<h2 id="creating-an-environment">Creating an environment<a class="headerlink" href="#creating-an-environment" title="Permanent link">&para;</a></h2>
+<p>As mentioned already, you can create separate environments and install
+separate versions of software into them. As an example, let's create a 
+new environment called 'test', install a package into it, and then 
+remove it, since it is just a test example. This example also shows another
+important lesson: you can list multiple channels which will be searched in
+sorted order (like PATH) to find the package and its dependencies. Here I 
+install <code>raxml</code> which will look first in the <code>conda-forge</code> and then <code>bioconda</code>
+channels.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># create new env, activate, install softare, and call software</span>
+conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span><span class="nb">test</span>
+conda<span class="w"> </span>activate<span class="w"> </span><span class="nb">test</span>
+conda<span class="w"> </span>install<span class="w"> </span>raxml<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>-c<span class="w"> </span>bioconda
+raxmlHPC<span class="w"> </span>-v
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># switch back to the &#39;base&#39; env and remove &#39;test&#39; env</span>
+conda<span class="w"> </span>activate<span class="w"> </span>base
+conda<span class="w"> </span>env<span class="w"> </span>remove<span class="w"> </span>-n<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<h2 id="an-environment-for-this-textbook">An environment for this textbook<a class="headerlink" href="#an-environment-for-this-textbook" title="Permanent link">&para;</a></h2>
+<p>Finally, we've reached the point where you are ready to install all of the 
+software associated with exercises in this textbook. As you might expect, 
+I recommend installing this into a conda environment. This can be done
+easily using a special file called <code>environment.yml</code>, which is used to 
+provide instructions to conda for installing many packages. </p>
+<details class="info">
+<summary>example environment.yml file</summary>
+<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">phylodatascience</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">conda-forge</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bioconda</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python&gt;=3.7</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jupyter</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numpy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pandas</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">scipy</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">numba</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loguru</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">toytree&gt;=3.0</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">msprime&gt;=1.0</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">raxml</span>
+<span class="w">  </span><span class="c1"># ...TODO</span>
+</code></pre></div>
+</details>
+<p>You can get this file by cloning the <code>git</code> repository for this textbook. </p>
+<div class="highlight"><pre><span></span><code><span class="c1"># clone the repo to a location (I use ~/Documents/) and cd into it.</span>
+<span class="nb">cd</span><span class="w"> </span>~/Documents/
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/eaton-lab/phylogenetic-data-science
+<span class="nb">cd</span><span class="w"> </span>phylogenetic-data-science/
+
+<span class="c1"># create new env and install all dependencies into it.</span>
+conda<span class="w"> </span>env<span class="w"> </span>create<span class="w"> </span>-f<span class="w"> </span>environment.yml
+
+<span class="c1"># activate this environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>phylodatascience
+</code></pre></div>
+<h2 id="installing-development-versions-temporary">Installing development versions (temporary)<a class="headerlink" href="#installing-development-versions-temporary" title="Permanent link">&para;</a></h2>
+<p>Both <code>toytree</code> and <code>ipcoal</code> are currently under active development
+to introduce new code that can be used in this class. To keep up 
+with the latest versions you can install the source code for these
+packages directly from GitHub in <em>development mode</em>, which allow 
+you to keep them up-to-date with a simple <code>git pull</code> call. Follow
+the instructions below:</p>
+<p>First, let's create a folder to store the git repos for the two 
+packages. This can be anywhere on your computer, its up to you.
+<div class="highlight"><pre><span></span><code><span class="c1"># create a folder to store repos</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>phylodatascience/
+<span class="nb">cd</span><span class="w"> </span>phylodatascience/
+</code></pre></div></p>
+<p>Now let's install toytree in development mode:
+<div class="highlight"><pre><span></span><code><span class="c1"># clone the toy3 branch of toytree</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>toy3<span class="w"> </span>https://github.com/eaton-lab/toytree.git
+<span class="nb">cd</span><span class="w"> </span>toytree/
+
+<span class="c1"># get all dependencies from conda</span>
+conda<span class="w"> </span>install<span class="w"> </span>toytree<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>--only-deps
+
+<span class="c1"># install toytree in development mode</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--no-deps
+</code></pre></div></p>
+<p>And similarly for ipcoal:</p>
+<p>Now let's install toytree in development mode:
+<div class="highlight"><pre><span></span><code><span class="c1"># clone the toy3 branch of toytree</span>
+git<span class="w"> </span>clone<span class="w"> </span>-b<span class="w"> </span>toy3<span class="w"> </span>https://github.com/eaton-lab/ipcoal.git
+<span class="nb">cd</span><span class="w"> </span>ipcoal/
+
+<span class="c1"># get all dependencies from conda</span>
+conda<span class="w"> </span>install<span class="w"> </span>ipcoal<span class="w"> </span>-c<span class="w"> </span>conda-forge<span class="w"> </span>--only-deps
+
+<span class="c1"># install toytree in development mode</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span>--no-deps
+</code></pre></div></p>
+<p>You now have the latest versions installed in development mode. Later,
+if you hear there was an update to either package you can pull in the 
+updates easily by <code>cd</code>ing back into its directory and running the
+command below. That's it, the code will update and your installation
+will continue to be pointing to this updated code:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># example: pull in updates to toytree</span>
+<span class="nb">cd</span><span class="w"> </span>toytree/
+git<span class="w"> </span>pull
+</code></pre></div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

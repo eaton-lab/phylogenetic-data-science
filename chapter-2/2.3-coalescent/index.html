@@ -1,0 +1,1963 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2.2-wright-fisher/">
+      
+      
+        <link rel="next" href="../2.4-coalescent-simulation/">
+      
+      <link rel="icon" href="/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>Coalescent Trees - Phylogenetic Data Science (IN DEVELOPMENT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HV34HZZD5N"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HV34HZZD5N",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HV34HZZD5N",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#coalescent-trees" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-header__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Phylogenetic Data Science (IN DEVELOPMENT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Coalescent Trees
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-nav__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Phylogenetic Data Science (IN DEVELOPMENT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About/Ethos
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation/Software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/" class="md-nav__link">
+        Columbia course
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          0 - Coding Bootcamp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          0 - Coding Bootcamp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.0-installation-conda/" class="md-nav__link">
+        0.0 - Installation (conda)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.1-jupyter-and-binder/" class="md-nav__link">
+        0.1 - Python Jupyter/Binder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.2-python-types/" class="md-nav__link">
+        0.2 - Python types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.3-python-funcs/" class="md-nav__link">
+        0.3 - Python functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.4-python-classes/" class="md-nav__link">
+        0.4 - Python classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.5-python-style/" class="md-nav__link">
+        0.5 - Python style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          1 - Trees as data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          1 - Trees as data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.1-introduction/" class="md-nav__link">
+        x.1 - Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.2-tree-thinking/" class="md-nav__link">
+        x.2 - Tree Thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.3-visualization/" class="md-nav__link">
+        x.3 - Visualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.4-features-of-trees/" class="md-nav__link">
+        1.4 - Tree data structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.5-code-node-class/" class="md-nav__link">
+        1.5 - Code - Node class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-code-tree-traversal/" class="md-nav__link">
+        1.6 - Code - Tree traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.7-code-tree-class/" class="md-nav__link">
+        1.7 - Code - Tree class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-exercises.md" class="md-nav__link">
+        x.7 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          2 - Evolutionary models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          2 - Evolutionary models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.0-modeling-evolution/" class="md-nav__link">
+        2.0 - Modeling evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.1-idealized-population/" class="md-nav__link">
+        2.1 - Idealized population
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.2-wright-fisher/" class="md-nav__link">
+        2.2 - Wright-Fisher Process
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2.3 - The Coalescent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2.3 - The Coalescent
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#under-construction" class="md-nav__link">
+    Under Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wright-fisher-models-and-coalescence" class="md-nav__link">
+    Wright-Fisher models and coalescence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coalescence-of-two-samples" class="md-nav__link">
+    Coalescence of two samples
+  </a>
+  
+    <nav class="md-nav" aria-label="Coalescence of two samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    TODO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kingman-coalescent" class="md-nav__link">
+    Kingman coalescent
+  </a>
+  
+    <nav class="md-nav" aria-label="Kingman coalescent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#derivation" class="md-nav__link">
+    Derivation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistical-distribution" class="md-nav__link">
+    Statistical Distribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genealogies-as-random-variables" class="md-nav__link">
+    Genealogies as random variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-applications" class="md-nav__link">
+    Practical applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-of-the-coalescent" class="md-nav__link">
+    Assumptions of the coalescent
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.4-coalescent-simulation/" class="md-nav__link">
+        2.4 - Coalescent simulation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.x-exercises/" class="md-nav__link">
+        2.x - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          3 - Mutation Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          3 - Mutation Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.x-DNA-Markov.md" class="md-nav__link">
+        3.0 - Modeling Evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        3.x - Probabilistic and Generative Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.2-markov-models/" class="md-nav__link">
+        3.2 - Markov models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3.x-other-models.md" class="md-nav__link">
+        3.x - Other models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-reading-list.md" class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          4 - Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          4 - Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.1-data-formats.md" class="md-nav__link">
+        x.1 - data formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.2-strings-and-matrices.md" class="md-nav__link">
+        x.2 - strings, tables, and matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-simulating-traits.md" class="md-nav__link">
+        x.x - Code - simulating data/traits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-sequence-alignment.md" class="md-nav__link">
+        x.x - Code - sequence alignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-converting-file-formats.md" class="md-nav__link">
+        x.x - Code - converting file formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read, write, parse, find, and clean phylip, fasta, fastq, and vcf data." class="md-nav__link">
+        Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          5 - Phylogenetic Inference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          5 - Phylogenetic Inference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - history
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - choosing a method
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.3 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.4 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          6 - Inference (Parsimony)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          6 - Inference (Parsimony)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.0-fitch-parsimony/" class="md-nav__link">
+        6.0 - Fitch Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.1-fitch-multiple-traits/" class="md-nav__link">
+        6.1 - Character matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        6.2 - Sankoff Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          7 - Inference (Distance-based)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          7 - Inference (Distance-based)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.0-introduction/" class="md-nav__link">
+        7.0 - Distance based trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.1-least-squares/" class="md-nav__link">
+        7.1 - Code - Least-squares
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.2-upgma/" class="md-nav__link">
+        7.2 - Code - UPGMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.3-neighbor-joining/" class="md-nav__link">
+        7.3 - Code - Neighbor Joining
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.4-applied/" class="md-nav__link">
+        7.4 - Applied examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.5-new-applications/" class="md-nav__link">
+        7.5 - New Applications
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          8 - Inference (Likelihood)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          8 - Inference (Likelihood)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - Maximum Likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - Genealogies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - Sequences
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.3 - Inferring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+          9 - Multispecies Coalescent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          9 - Multispecies Coalescent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.0-intro.md" class="md-nav__link">
+        9.0 - Species trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.1-likelihood.md" class="md-nav__link">
+        9.1 - Coalescent likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genealogical.md" class="md-nav__link">
+        9.2 - Genealogical thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genetics.md" class="md-nav__link">
+        9.3 - Genetic thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.3-MSC.md" class="md-nav__link">
+        9.4 - MSC likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#under-construction" class="md-nav__link">
+    Under Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wright-fisher-models-and-coalescence" class="md-nav__link">
+    Wright-Fisher models and coalescence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coalescence-of-two-samples" class="md-nav__link">
+    Coalescence of two samples
+  </a>
+  
+    <nav class="md-nav" aria-label="Coalescence of two samples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#todo" class="md-nav__link">
+    TODO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kingman-coalescent" class="md-nav__link">
+    Kingman coalescent
+  </a>
+  
+    <nav class="md-nav" aria-label="Kingman coalescent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#derivation" class="md-nav__link">
+    Derivation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statistical-distribution" class="md-nav__link">
+    Statistical Distribution
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genealogies-as-random-variables" class="md-nav__link">
+    Genealogies as random variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#practical-applications" class="md-nav__link">
+    Practical applications
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assumptions-of-the-coalescent" class="md-nav__link">
+    Assumptions of the coalescent
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="coalescent-trees">Coalescent trees<a class="headerlink" href="#coalescent-trees" title="Permanent link">&para;</a></h1>
+<h2 id="under-construction">Under Construction<a class="headerlink" href="#under-construction" title="Permanent link">&para;</a></h2>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this lesson you will be familiar with:</p>
+<ol>
+<li>Coalescent theory.</li>
+<li>Modeling waiting times between coalescent events as a probability distribution.</li>
+<li>Generating coalescent trees.</li>
+<li>Coalescent trees as random variables (model assumptions).</li>
+</ol>
+<p>This lesson will introduce Coalescent theory and the process by which 
+coalescent trees can be randomly generated, and treated as stochastic
+random variables. For this, we will use the <code>numpy</code> library to access
+statistic distributions, and <code>toytree</code> to construct and visualize trees.
+By the end of the lesson you will write your own simple coalescent 
+simulator to understand the basic concepts and steps underlying this 
+process.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">toytree</span>
+</code></pre></div>
+<h2 id="wright-fisher-models-and-coalescence">Wright-Fisher models and coalescence<a class="headerlink" href="#wright-fisher-models-and-coalescence" title="Permanent link">&para;</a></h2>
+<p>In session 2.2 we introduced Wright-Fisher (WF) models to simulate evolution
+in a discrete random mating population of size N diploid gene copies. Over
+multiple generations of random mating, genetic drift arises from random 
+variation in which gene copies are replicated from one generation to the next.
+This has the consequence that genetic variation in the population is slowly 
+reduced over time, as different alleles become lost or fixed. 
+A second important outcome of this process is that it creates a 
+network of ancestor-descendant relationships among gene copies (a genealogy). 
+The loss of genetic variation over time, and the genealogical relationship
+among gene copies, are inherently linked. If we run a simulation long enough
+for one allele to fix, and then construct a genealogy of gene copies in 
+the current population, we will find that they all trace back to an 
+ancestral gene copy that had the same allelic state. 
+The allelic state of that ancestor was inherited by all of the present 
+gene copies (for now we are ignoring the possibility of new mutations
+generating new alleles). </p>
+<div class="admonition tip">
+<p class="admonition-title">A genealogy is informative about the amount of genetic variation in the population.</p>
+<p>If we run a WF simulation long enough for one allele to fix (e.g., green), 
+and then construct a genealogy of gene copies in the current population, 
+we will find that they all trace back to one or more ancestral gene 
+copies that had the same allelic state. This allele was inherited by 
+all of the present gene copies from their ancestors. The random genealogy
+connecting these gene copies shows the history of these copies of that 
+allele. (For now we are ignoring the possibility of new mutations
+generating new alleles). </p>
+</div>
+<div class="highlight"><pre><span></span><code><span class="n">wf</span> <span class="o">=</span> <span class="n">toytree</span><span class="o">.</span><span class="n">learn</span><span class="o">.</span><span class="n">wright_fisher_simulation</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+<!-- <figure markdown>
+  ![WF-plot-2.2.3](../chapter-1/notebooks/fig.2.2.3.svg){width="700", loading=lazy}
+  <figcaption>Fig. 2.2.3 Coalescence in a WF process.</figcaption>
+</figure> -->
+
+<h2 id="coalescence-of-two-samples">Coalescence of two samples<a class="headerlink" href="#coalescence-of-two-samples" title="Permanent link">&para;</a></h2>
+<p>Sewall Wright (1931) was the first to describe the process of coalescence that
+arises within a WF process. Every pair of gene copies eventually traces
+back to a common ancestor, a process referred to as <strong>coalescence</strong>. 
+The expected time until this happens can be described using probability
+theory, and turns out to rely entirely on a single population parameter:
+the effective populations size, Ne. </p>
+<p>The probability that two gene copies share the same ancestor one generation
+in the past is 1 / 2Ne. This may look familiar: In a previous lesson we 
+described that the strength of genetic drift is 1 / 2Ne. The fact that 
+both of these processes occur at the same rate suggests the connection 
+between them. 
+You can compute this by thinking of each of the two gene copies in turn. 
+The first gene copy must have an ancestor in the previous
+generation, so the probability of this event is 1. The next gene copy may or
+may not have the same ancestor in the previous generation. The probability
+that it does is &frac12;N, because there are 2N possible gene copies to choose
+from. </p>
+<!-- This probability was first derived by Sewall Wright (1931), and forms the basis on which many statistical findings were derived.  -->
+
+<p>We can describe this process as the outcome of a [Bernoulli trial], 
+a random variable that returns True with probability p, and 
+False with probability 1 - p. This type of probability distribution is 
+common in statistics. Often, we are interested in the question of <em>how
+many trials will need to occur, on average, until we observe a success?</em>
+This question can also be described by a probability distribution, called
+the [geometric distribution]. The mean expectation of the geometric 
+distribution for the time until a successful event is observed, given its
+probability <span class="arithmatex">\(p\)</span>, is <span class="arithmatex">\(E[t] = 1 / p\)</span>. 
+To translate this back into our realm of interest: the probability that 
+two samples coalesce one generation ago is <span class="arithmatex">\(p = 1 / 2Ne\)</span>. Thus, the expected
+number of generations until two samples coalesce is <span class="arithmatex">\(E[t] = 2Ne\)</span>. </p>
+<h3 id="todo">TODO<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h3>
+<ul>
+<li>a function to add mutations to the tree at rate u.</li>
+<li>the genetic diversity in a population theta = 4Ne * u</li>
+<li>estimate Ne based on genetic diversity</li>
+</ul>
+<!-- - Bernoulli trial -->
+<!-- - Geometric distribution -->
+<!-- - Exponential waiting time -->
+
+<!-- https://vitalflux.com/geometric-distribution-explained-with-python-examples/ -->
+
+<!-- Geometric Distribution is 
+ -->
+<!-- At each successive preceding generation, the probability of coalescence is geometrically distributed—that is, it is the probability of noncoalescence at the t − 1 preceding generations multiplied by the probability of coalescence at the generation of interest: 
+ -->
+
+<h2 id="kingman-coalescent">Kingman coalescent<a class="headerlink" href="#kingman-coalescent" title="Permanent link">&para;</a></h2>
+<p>J. F. C. Kingman was a mathematician (1982) that used advances in probability
+theory to develop a generalization of the expectations we can derive
+for two sampled gene copies, and instead make claims about any arbitrarily 
+large number of sampled gene copies, which we will call <span class="arithmatex">\(k\)</span>. </p>
+<h3 id="derivation">Derivation<a class="headerlink" href="#derivation" title="Permanent link">&para;</a></h3>
+<p>Let's start by asking, what is the probability that two samples do not 
+coalesce in the previous generation -- that they don't share a common 
+ancestor one generation back. Viewed backwards in time, the first gene copy 
+samples an ancestor, and the second gene copy has a 1 - &frac12;N probability of 
+sampling a different ancestor. We can then extend this to ask what is the
+probability that a third sample does not coalesce with either of those two
+one generation back, which 1 - 2 / 2N. We can repeat this process for 
+all <span class="arithmatex">\(k\)</span> sampled gene copies of interest to get a series that represents
+the probability that <span class="arithmatex">\(k\)</span> samples do not coalesce one generation ago:</p>
+<div class="arithmatex">\[ P(\text{no coal}| k, N) = (1 - \frac{1}{2N}) \times (1 - \frac{2}{2N}) \times (1 - \frac{3}{2N}) \times ... (1 - \frac{k}{2N}) \]</div>
+<p>The right side of this equation can be multiplied out to simplify its
+representation as:</p>
+<div class="arithmatex">\[ P(\text{no coal} | k, N) = 1 - [1 + 2 + 3 + ... (k - 1)] \times \frac{1}{2N} + (\text{terms in} \frac{1}{N^2}) \]</div>
+<p>We will now use two tricks to simplify this. First, the sum of integers 
+from 1 to k - 1 can be written as k(k-1)/2. Second, we will simply 
+discard the term on the right, which corresponds to relatively rare 
+instances where more than two sampled gene copies would coalesce 
+in the same generation (more on this below). And so we get:</p>
+<div class="arithmatex">\[ P(\text{no coal} | k, N) = 1 - \frac{k(k-1)}{2} \times \frac{1}{2N} \]</div>
+<p>which finally simplifies to the more commonly represented form:</p>
+<div class="arithmatex">\[ P(\text{no coal} | k, N) = 1 - \frac{k(k-1)}{4N} \]</div>
+<p>Finally, if we describe P(coal | k, N) as 1 - P(\text{no coal}| k, N) we
+get a solution for the probability that <em>one</em> coalescent event occurs in
+the previous generation given <span class="arithmatex">\(k\)</span> sampled gene copies in a population with
+effective size N. </p>
+<div class="arithmatex">\[ P(\text{coal} | k, N) = \frac{k(k-1)}{4N} \]</div>
+<p>Kingman's coalescent is actually an <em>approximation</em> of the coalescent, 
+because we next simply ignore the second bit of the equation above. Kingman (1982) 
+demonstrated that this was a pretty good approximation as long as k(k-1)
+is much smaller than the population size N. By throwing away the second
+part of this equation we are discarding the probability that two or more
+coalescent events among our sampled gene copies occur during the 
+same generation. This is thus an assumption of the n-coalescent: 
+generations are discrete and non-overlapping, and only one coalescent event
+occurs per generation among a set of observed samples.</p>
+<h3 id="statistical-distribution">Statistical Distribution<a class="headerlink" href="#statistical-distribution" title="Permanent link">&para;</a></h3>
+<p>This probability can be thought of like a biased coin flip,<br />
+where a heads indicates a coalescent event, and a tails means no
+coalescent event. It is generally much more common that there will be no 
+coalescent event than there being a coalescence. We can repeat this many
+times to ask how many trials will be required, on average, until we observe
+a heads. This type of question belongs to the realm of the 
+<a href="https://en.wikipedia.org/wiki/Geometric_distribution">geometric distribution</a>:
+The probability distribution of the number X of Bernoulli trials needed 
+to get one success, e.g., { 1, 2, 3, ...}. </p>
+<p>Given the probability of an event, p, the mean number of trials before a 
+success is observed under the geometric probability distribution is 1/p. 
+We can translate this into our scenario. We have a statement for the 
+probability of a coalescent event <span class="arithmatex">\(P(\text{coal} | k, N)\)</span>, where each 
+generation represents a trial where coalescence could occur. And so the mean 
+(Expectation) for the time until the first observed coalescence event 
+(which we will call <span class="arithmatex">\(t_k\)</span>) is 1 over this probability:</p>
+<div class="arithmatex">\[ E[t_k] = \frac{4N}{k(k-1)} \]</div>
+<p>This expectation of the coalescent model seems relatively simple, but 
+it turns that it can be used in a lot of powerful ways.</p>
+<h2 id="genealogies-as-random-variables">Genealogies as random variables<a class="headerlink" href="#genealogies-as-random-variables" title="Permanent link">&para;</a></h2>
+<p>Waiting time until coalescent, but who will coalesce? Hopefully you guessed
+it: a random pair out of the k gene copies. This is because we are still
+working within the assumptions of the Wright-Fisher process and the model
+of an idealized population with discrete non-overlapping generations and 
+random mating. </p>
+<p>We can simulate this process by randomly sampling gene copies to 
+serve as parents of gene copies in successive generations.
+This process can be repeated many times, from different starting seeds, 
+and we would likely get a different outcome nearly every time, representing
+<em>a random sample over the possible ways in which some number of gene 
+copies could be related.</em> This turns out </p>
+<p>If we think of these genealogies as trees, rather than just a collection
+of waiting times. </p>
+<p>... It can often be difficult at first to understand how a collection of
+waiting times can represent a genealogy (tree). How does this process 
+group samples together to form a tree from the waiting times? Randomly. 
+Remember, random mating is fundamental to our model assumptions.
+But how could a random tree possibly be useful compared to real data, 
+where some samples will surely be more closely related than others most
+of the time? ...</p>
+<!-- show several random 10 tip genealogies -->
+
+<!-- show how sampling 10 out of 50 captures all deep splits (usually)-->
+
+<!-- 
+## Genetic variation on genealogies
+Take note, this is not the probability that they
+share a specific common ancestor in the previous generation, but rather 
+a probability of whether or not they 
+ -->
+
+<h2 id="practical-applications">Practical applications<a class="headerlink" href="#practical-applications" title="Permanent link">&para;</a></h2>
+<p>Rather than keep track of every single gene 
+copy in a large population, we can instead formulate expectations for 
+how a small number of samples are expected to be related. It thus 
+serves a practical purpose for both simulations and empirical studies
+of populations.</p>
+<h2 id="assumptions-of-the-coalescent">Assumptions of the coalescent<a class="headerlink" href="#assumptions-of-the-coalescent" title="Permanent link">&para;</a></h2>
+<p>Kingman's n-coalescent is by far the most widely used model of its kind,
+but several variants also exist which make slightly different assumptions
+that may be more appropriate for some study systems. </p>
+<ul>
+<li>k is much much smaller than Ne.</li>
+<li>non-overlapping generations.</li>
+<li>...</li>
+</ul>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2106 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../1.4-features-of-trees/">
+      
+      
+        <link rel="next" href="../1.6-code-tree-traversal/">
+      
+      <link rel="icon" href="/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>1.5 - Code - Node class - Phylogenetic Data Science (IN DEVELOPMENT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HV34HZZD5N"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HV34HZZD5N",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HV34HZZD5N",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-objectives" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-header__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Phylogenetic Data Science (IN DEVELOPMENT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1.5 - Code - Node class
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-nav__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Phylogenetic Data Science (IN DEVELOPMENT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About/Ethos
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation/Software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/" class="md-nav__link">
+        Columbia course
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          0 - Coding Bootcamp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          0 - Coding Bootcamp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.0-installation-conda/" class="md-nav__link">
+        0.0 - Installation (conda)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.1-jupyter-and-binder/" class="md-nav__link">
+        0.1 - Python Jupyter/Binder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.2-python-types/" class="md-nav__link">
+        0.2 - Python types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.3-python-funcs/" class="md-nav__link">
+        0.3 - Python functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.4-python-classes/" class="md-nav__link">
+        0.4 - Python classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.5-python-style/" class="md-nav__link">
+        0.5 - Python style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          1 - Trees as data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          1 - Trees as data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.1-introduction/" class="md-nav__link">
+        x.1 - Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.2-tree-thinking/" class="md-nav__link">
+        x.2 - Tree Thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.3-visualization/" class="md-nav__link">
+        x.3 - Visualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.4-features-of-trees/" class="md-nav__link">
+        1.4 - Tree data structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          1.5 - Code - Node class
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        1.5 - Code - Node class
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-practices" class="md-nav__link">
+    Coding practices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-node-based-tree" class="md-nav__link">
+    A Node-based Tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-class-simple" class="md-nav__link">
+    Node class (simple)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-style" class="md-nav__link">
+    Class Style
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-nodes" class="md-nav__link">
+    Connecting Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-oriented-programming" class="md-nav__link">
+    Object-oriented programming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-class-advanced" class="md-nav__link">
+    Node class (advanced)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-inheritance" class="md-nav__link">
+    Class Inheritance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.6-code-tree-traversal/" class="md-nav__link">
+        1.6 - Code - Tree traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.7-code-tree-class/" class="md-nav__link">
+        1.7 - Code - Tree class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.6-exercises.md" class="md-nav__link">
+        x.7 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          2 - Evolutionary models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          2 - Evolutionary models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.0-modeling-evolution/" class="md-nav__link">
+        2.0 - Modeling evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.1-idealized-population/" class="md-nav__link">
+        2.1 - Idealized population
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.2-wright-fisher/" class="md-nav__link">
+        2.2 - Wright-Fisher Process
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.3-coalescent/" class="md-nav__link">
+        2.3 - The Coalescent
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.4-coalescent-simulation/" class="md-nav__link">
+        2.4 - Coalescent simulation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-2/2.x-exercises/" class="md-nav__link">
+        2.x - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          3 - Mutation Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          3 - Mutation Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.x-DNA-Markov.md" class="md-nav__link">
+        3.0 - Modeling Evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        3.x - Probabilistic and Generative Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.2-markov-models/" class="md-nav__link">
+        3.2 - Markov models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3.x-other-models.md" class="md-nav__link">
+        3.x - Other models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-reading-list.md" class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          4 - Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          4 - Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.1-data-formats.md" class="md-nav__link">
+        x.1 - data formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.2-strings-and-matrices.md" class="md-nav__link">
+        x.2 - strings, tables, and matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-simulating-traits.md" class="md-nav__link">
+        x.x - Code - simulating data/traits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-sequence-alignment.md" class="md-nav__link">
+        x.x - Code - sequence alignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-converting-file-formats.md" class="md-nav__link">
+        x.x - Code - converting file formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read, write, parse, find, and clean phylip, fasta, fastq, and vcf data." class="md-nav__link">
+        Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          5 - Phylogenetic Inference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          5 - Phylogenetic Inference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - history
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - choosing a method
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.3 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.4 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          6 - Inference (Parsimony)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          6 - Inference (Parsimony)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.0-fitch-parsimony/" class="md-nav__link">
+        6.0 - Fitch Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.1-fitch-multiple-traits/" class="md-nav__link">
+        6.1 - Character matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        6.2 - Sankoff Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          7 - Inference (Distance-based)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          7 - Inference (Distance-based)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.0-introduction/" class="md-nav__link">
+        7.0 - Distance based trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.1-least-squares/" class="md-nav__link">
+        7.1 - Code - Least-squares
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.2-upgma/" class="md-nav__link">
+        7.2 - Code - UPGMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.3-neighbor-joining/" class="md-nav__link">
+        7.3 - Code - Neighbor Joining
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.4-applied/" class="md-nav__link">
+        7.4 - Applied examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.5-new-applications/" class="md-nav__link">
+        7.5 - New Applications
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          8 - Inference (Likelihood)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          8 - Inference (Likelihood)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - Maximum Likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - Genealogies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - Sequences
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.3 - Inferring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+          9 - Multispecies Coalescent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          9 - Multispecies Coalescent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.0-intro.md" class="md-nav__link">
+        9.0 - Species trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.1-likelihood.md" class="md-nav__link">
+        9.1 - Coalescent likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genealogical.md" class="md-nav__link">
+        9.2 - Genealogical thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genetics.md" class="md-nav__link">
+        9.3 - Genetic thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.3-MSC.md" class="md-nav__link">
+        9.4 - MSC likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coding-practices" class="md-nav__link">
+    Coding practices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-node-based-tree" class="md-nav__link">
+    A Node-based Tree
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-class-simple" class="md-nav__link">
+    Node class (simple)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-style" class="md-nav__link">
+    Class Style
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-nodes" class="md-nav__link">
+    Connecting Nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-oriented-programming" class="md-nav__link">
+    Object-oriented programming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-class-advanced" class="md-nav__link">
+    Node class (advanced)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#class-inheritance" class="md-nav__link">
+    Class Inheritance
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+  <h1>1.5 - Code - Node class</h1>
+
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.45 4.73L5.82 21 12 17.27Z"/></svg></span> <em>Follow along in a jupyter notebook on binder:</em>
+<a href="https://mybinder.org/v2/gh/eaton-lab/phylogenetic-data-science/HEAD?filepath=docs%2Fchapter-1%2Fnotebooks%2Fnode-class-1.ipynb"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 7V5h2V4a2 2 0 0 1 2-2h6v7l2.5-1.5L18 9V2h1c1.05 0 2 .95 2 2v16c0 1.05-.95 2-2 2H7c-1.05 0-2-.95-2-2v-1H3v-2h2v-4H3v-2h2V7H3m4 4H5v2h2v-2m0-4V5H5v2h2m0 12v-2H5v2h2Z"/></svg></span> Node-class.ipynb</a></p>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>The goal of this chapter is to introduce coding concepts underlying the
+tree objects used in computational packages like <code>toytree</code>. By gaining a
+better understanding of how these objects are designed, they will be easier
+to work with. By the end of this chapter you will:</p>
+<ol>
+<li>Practice development of a custom Python class object.</li>
+<li>Have an improved understanding of object-oriented programming principles.</li>
+<li>Understand how Node class objects can represent a Tree data structure.</li>
+</ol>
+<h2 id="coding-practices">Coding practices<a class="headerlink" href="#coding-practices" title="Permanent link">&para;</a></h2>
+<p>This is one of our first in depth coding exercises, so we will start
+relatively slowly, describing the steps that are taken and why. This
+lesson will use concepts from the bootcamp chapters including <a href="../../bootcamp/0.2-python-types/">types</a>,
+<a href="../../bootcamp/0.3-python-funcs/">functions</a> (including type hints), and <a href="../../bootcamp/0.4-python-classes/">classes</a>. You can find an
+additional review of relevant concepts in the <a href="https://docs.python.org/3/tutorial/classes.html">Python tutorial chapter
+on classes</a>.</p>
+<h2 id="a-node-based-tree">A Node-based Tree<a class="headerlink" href="#a-node-based-tree" title="Permanent link">&para;</a></h2>
+<p>In the last chapter we briefly introduced the concept of a <em>tree data
+structure</em> as a computational concept that allows for efficient storage
+and access to hierarchical data. In this chapter we will elaborate
+on this concept by developing a Python class objects as an example
+of such a data structure.</p>
+<p>A tree is composed of nodes and edges. These could each be represented by
+separate objects in memory, for example as Python classes, but it turns
+out that the simplest approach is to only represent one or the other, since
+they are inherently linked (edges describe relationships among nodes).
+Therefore a tree data structure is typically represented <em>only by Node
+objects</em>.</p>
+<p>Node objects can store information about a Node, such as its name (label) and
+any other arbitrary data we might want to apply to it. In addition, it can
+store <em>pointers</em> that reference other Nodes that it is directly connected to.
+In this way, the pointers act as edges of the tree structure, but do not
+take up space in memory (e.g., we don't need to create a separate table to
+store the edge information). This usage of assigning <em>pointer</em> attributes to
+Node objects is similar to how dictionaries work in Python, where keys act
+as pointers to other Python objects that exist in memory. Since Nodes contain
+references to each other, an entire tree structure can be stored simply as
+a collection of Nodes.</p>
+<h2 id="node-class-simple">Node class (simple)<a class="headerlink" href="#node-class-simple" title="Permanent link">&para;</a></h2>
+<p>We will walk through several examples of developing Node class objects,
+starting with a very simple example, and then iteratively building it into
+a more complex class. Here is our first bare-bones starting point.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<p>Because this is our first class we'll walk through it slowly. This is a
+class that takes a single argument to store a <code>.name</code> attribute, and also
+includes two additional attributes, <code>.children</code> and <code>.up</code>, which will be
+used to store references to other Nodes that are descendant or ancestral
+from this Node, respectively. As with any <code>class</code>, its definition starts
+with an <code>__init__</code> function, which is used to create (initialize) instances
+of the class. This is where any arguments input by the user, such as <code>name</code>
+in this case, are stored as attributes, and any other attributes of
+the class that we want to create should be defined and set to a starting
+value (e.g., children and up). This is done by assigning attributes to the
+special keyword <code>self</code>, which is a reference to the new instance that is being
+created.</p>
+<p>Now that we have defined this new class, we can use it to create new
+<code>Node</code> instances. Let's create an instance and store it as a variable so that
+we can use it to explore more about its structure.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">node_A</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">node_A</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># &lt;__main__.Node at 0x7fa22228e790&gt;</span>
+</code></pre></div>
+The printed output of our Node will look like below, which is simply the
+default representation for a custom class which shows the object type and
+location where it is defined (<code>__main__.Node</code>) and
+some random-looking information (<code>at 0x...</code>) that represents its place in
+memory (i.e., a hash table). We will see in a little bit how we can
+customize this to be a bit more informative and pretty.</p>
+<h2 id="class-style">Class Style<a class="headerlink" href="#class-style" title="Permanent link">&para;</a></h2>
+<p>Following our style guide a more complete example of this class would look
+like below, which includes a detailed sphinx-compatible docstring, type
+hints, and comments in the code. For the sake of brevity we will not write
+all of the docstrings in as verbose of way throughout this chapter, but do
+so here to provide an example of good coding practices. From this example
+we can see more clearly what object types will be used to fill the different
+attributes of the Node class, and how to use it.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A single Node that connects to other Nodes to create a tree structure.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name: str</span>
+<span class="sd">        A string label applied to this Node.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    children: Tuple of Nodes</span>
+<span class="sd">        An ordered tuple of Nodes directly descended (children) of this Node.</span>
+<span class="sd">    up: Node or None</span>
+<span class="sd">        The parent (ancestor) of this Node</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; node_a = Node(name=&quot;A&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; node_b = Node(name=&quot;B&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; node_a.children = (node_b,)</span>
+<span class="sd">    &gt;&gt;&gt; node_b.up = node_a</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+        <span class="c1"># attributes to be updated after init to form connections.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</code></pre></div>
+<h2 id="connecting-nodes">Connecting Nodes<a class="headerlink" href="#connecting-nodes" title="Permanent link">&para;</a></h2>
+<p>Our class is very simple at this point, and so not yet very useful.
+But already we can begin to create a tree data structure simply by forming
+connections among multiple Node instances. Below we create three Node
+instances with different names, and then update the <code>.children</code> and <code>.up</code>
+attributes to create references (pointers) from one to another, such that
+the node named "A" is parent to Nodes "B" and "C".</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># create several Node instances</span>
+<span class="n">node_a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">node_b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">node_c</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+
+<span class="c1"># connect them by setting their children and/or up attributes</span>
+<span class="n">node_a</span><span class="o">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_b</span><span class="p">,</span> <span class="n">node_c</span><span class="p">)</span>
+<span class="n">node_b</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">node_a</span>
+<span class="n">node_c</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="n">node_a</span>
+</code></pre></div>
+<p>That's it, we have created a tree structure. By visiting each Node we could
+now extract a complete edge table. As an example, the code below will visit
+each Node using a for-loop to print the edge information extracted from each
+Node's <code>.up</code> and <code>.children</code> attributes, by referencing each Node by its
+<code>.name</code> attribute. This tree contains two edges, which we can find in multiple
+ways:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># e.g., get edge information from Nodes .children attributes</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">node_c</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;--&gt;&quot;</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># e.g., get edge information from Nodes .up attributes</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">node_c</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">up</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">up</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;--&gt;&quot;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+<p>Both methods will print the following:
+<div class="highlight"><pre><span></span><code><span class="c1"># A --&gt; B</span>
+<span class="c1"># A --&gt; C</span>
+</code></pre></div></p>
+<h2 id="object-oriented-programming">Object-oriented programming<a class="headerlink" href="#object-oriented-programming" title="Permanent link">&para;</a></h2>
+<p>The development of a custom class object for creating a tree structure is
+an example of <em>object-oriented</em> programming (OOP). This is a design principle
+in programming that can be used to organize code to make it easier to read
+and understand for programmers, and also easier to use and learn for users.
+A key concept of OOP is the creation of <em>class methods</em>, which are functions
+that are inherently attached to a class object. Let's start by creating an
+example, in the form of a function that can be used to form connections among
+Nodes similar to what we did in the example above. We will call this function
+<code>add_child()</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Node instance that includes a method as an example.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="s2">&quot;Node&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s2">&quot;Node&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new Node and connects it as a child to this Node.&quot;&quot;&quot;</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">new_node</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">+=</span> <span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="p">)</span>
+</code></pre></div>
+<p>The new version of our Node class above now includes a method which can be
+used to create a new Node and attach it to the existing Node that calls this
+function. As you can see, the first argument to the <code>add_child</code> method is
+<code>self</code>, this is because the method includes references to <code>self</code>, and so it
+must accept <code>self</code> as an argument. It is typical that almost all methods of a
+class will start with <code>self</code> as the first argument. In addition, our function
+takes another argument for the name that it will give to the new Node that
+will be created. Finally, note that the <code>def</code> line ends with a <code>-&gt;</code> pointing
+to the <em>type</em> that is expected to be returned. This is a type hint. It does
+not affect how the code functions, but simply indicates to the developer and
+user what to expect to happen when the function is run. In this case, it
+doesn't return anything (i.e., it returns None). Below is an example of how
+we can use this new code to create the same tree structure that we did above.</p>
+<div class="highlight"><pre><span></span><code><span class="n">node_a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+<span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>This provides a much simpler and more understandable workflow than in the
+first example. We can use tab-completion in an interactive environment, like
+a jupyter notebook, to see the attributes and methods available from a Node
+instance, and we would see that <code>add_child</code> is an option of this class. In
+this way, the design of the class itself makes it easy for us to understand
+what it is possible to do using it. This is a strength of OOP: organizing
+functions that operate on classes to be associated with the class objects
+themselves. By contrast, if there was just a function in the global namespace
+called <code>add_child</code> we might not be aware of it, or know what type of objects
+it is intended to be used on.</p>
+<h2 id="node-class-advanced">Node class (advanced)<a class="headerlink" href="#node-class-advanced" title="Permanent link">&para;</a></h2>
+<p>Now that we have introduced the <code>__init__</code> function, and additional custom
+functions of a class, let's start to adding several additional details to
+the class. Here I added:</p>
+<ol>
+<li>
+<p>An additional argument to the <code>__init__</code>
+that allows for setting a <code>.dist</code> attribute, which will be used to represent
+the length of the edge from this Node to its parent. In addition, I set
+default values for both <code>name</code> and <code>dist</code> in the <code>__init__</code> to "" and 0,
+respectively. These same arguments and default were also added to the
+<code>add_child</code> method.</p>
+</li>
+<li>
+<p>Two additional functions called <code>is_leaf()</code>
+and <code>is_root()</code> that return a boolean indicating the type of Node that
+each is based on information about its <em>degree</em> (number of in_degree or
+out_degree connections). For example, if a node has no in_degree edges then
+it must be the root. If it has no out_degree edges then it must be a leaf.</p>
+</li>
+<li>
+<p>A custom <em>dunder</em> method called <code>__repr__</code>. Class functions that are
+surrounded by double underscores represent a special type of function called
+a dunder. These do not appear when using auto-complete in a jupyter notebook
+unless you type the underscores manually. They are <em>intended</em> to be private
+functions that the user does not need to see, unless they go searching for it.
+It turns out that all classes have several dunders that are automatically
+created by default. The <code>__repr__</code> is an example. This is the representation
+of what will be shown when the object is returned (e.g., when it appears in
+the output cell of a Jupyter notebook). There is a related function called
+<code>__str__</code> that can be used to separately format what it will look like when
+called in a print function. Here we overwrite the existing default <code>__repr__</code>
+function to make our Node objects a bit easier to understand, so that they
+will simply show a Node as <code>'Node(name)'</code> instead of <code>__main__.Node at 0x....</code>
+when we view them.</p>
+</li>
+<li>
+<p>I modified the <code>add_child</code> function to now <em>return</em> the new Node object
+that it creates so that we can store it as a variable if we want to. This
+makes it easier in the example code below to iterate over each Node that has
+been created, since we have not yet created functions to traverse the tree,
+which we will begin to do in the next chapter. You'll notice that the type
+hint now shows that it returns a "Node".</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A Node instance that can connect with other Nodes to form a Tree.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name: str</span>
+<span class="sd">        A name string associated with a Node when printed or visualized.</span>
+<span class="sd">    dist: float</span>
+<span class="sd">        A float value as the distance between this Node and its parent (up)</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    children: Tuple</span>
+<span class="sd">        A tuple of Node instances that are descended from this Node.</span>
+<span class="sd">    up: Node or None</span>
+<span class="sd">        A Node that is ancestral to this Node, or None if this Node is root.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">0.</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dist</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Node&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation as Node(name).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Node(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True if Node is a leaf (i.e., has no children).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return True if Node is the root (i.e., has no ancestor).&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">up</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;Node&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add a Node as a child to this one.&quot;&quot;&quot;</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="n">dist</span><span class="p">)</span>
+        <span class="n">new_node</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">+=</span> <span class="p">(</span><span class="n">new_node</span><span class="p">,)</span>
+        <span class="k">return</span> <span class="n">new_node</span>
+</code></pre></div>
+<p>Let's try out the new Node class by making several Nodes with different
+edge lengths to their parents, and print several types of information about
+each of them.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># create three connected Nodes</span>
+<span class="n">node_a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">node_b</span> <span class="o">=</span> <span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">node_c</span> <span class="o">=</span> <span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># iteratate over Nodes and print information</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">node_c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">dist</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">(),</span> <span class="n">node</span><span class="o">.</span><span class="n">is_root</span><span class="p">(),</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+</code></pre></div>
+<p>This returns the following below. The first thing to notice here is the first
+and last element in each row, which lists the Node object and its children.
+You can see Node objects are now being represented by the <code>Node(name)</code>
+representation that we set using the <code>__repr__</code> method of our class. Next you
+can see that each Node has a name and dist value corresponding to the values
+that were set in our code. Finally, the functions <code>is_leaf</code> and <code>is_root</code>
+return different boolean answers for the two different Node types that we
+created, a root Node (A) and two leaf Nodes (B and C).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Node(A) A 0.0 False True (Node(B), Node(C))</span>
+<span class="c1"># Node(B) B 1.0 True False ()</span>
+<span class="c1"># Node(C) C 2.0 True False ()</span>
+</code></pre></div>
+<p>Already we can see that with very little coding we are creating a class
+object that can be used to extract a lot of information about individual
+parts of a tree. As the tree gets bigger, however, it will become more
+difficult to keep track of the collection of many Node objects. A convenient
+solution to this is to use <code>traversal</code> algorithms, which will allow one
+to easily move up or down the tree from any given point, or to traverse
+every connected Node in a tree in an expected order. In the next
+chapter we will develop traversal functions.</p>
+<h2 id="class-inheritance">Class Inheritance<a class="headerlink" href="#class-inheritance" title="Permanent link">&para;</a></h2>
+<p>Before moving on, since we are discussing object-oriented programming
+in this chapter, it is worth mentioning one more useful principle of OOP
+which is <em>class inheritance</em>. This is another coding principle that does
+not actually affect the performance of your code, but is rather a design
+principle used by developers to make their code easier to read and debug.
+It is a way to take a simple class definition, like the ones we created
+above, and to create variants of these classes that are similar (because
+they <em>inherit</em> any properties of their parent class), but can differ in
+any ways that are defined in the new class.</p>
+<p>As an example, let's create a new class that is a constrained version of
+our previous class: one where you can only connect at most two children
+to any Node (i.e., it enforces that the tree must be <em>bifurcating</em>). We
+can create this very simply by inheriting from our previous class, and then
+adding some kind of check that will raise an exception is the user tries
+to add &gt;2 children to a Node. This is done below by creating a new class
+that we will call <code>BiNode</code> that uses the parent class (<code>Node</code>) inside
+parentheses to indicate it is inherting from this. We then overwrite
+the <code>add_child</code> function to include an if-statement that raises an
+exception if adding a child would create a polytomy, and also to make
+this function create and return BiNode objects instead of Nodes. We also
+overwrite the <code>__repr__</code> func to show BiNode instead of Node. But, as you
+can see, we do not need to write the other functions such as <code>is_leaf</code> or
+<code>is_root</code> again. Since we did not overwrite them, they are inherited from
+Node and act is the exact same way they would in that class.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">BiNode</span><span class="p">(</span><span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A subclass of Node that cannot add &gt;2 children to a BiNode.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return string representation of this class instance&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;BiNode(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="k">def</span> <span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="o">=</span><span class="mf">0.</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BiNode&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a new BiNode and connects it as a child to this BiNode.&quot;&quot;&quot;</span>
+        <span class="c1"># raise an exception if the BiNode already has 2 children.</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot add &gt;2 children to a BiNode.&quot;</span><span class="p">)</span>
+        <span class="c1"># else, create and connect the new BiNode</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">BiNode</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="n">dist</span><span class="p">)</span>
+        <span class="n">new_node</span><span class="o">.</span><span class="n">up</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">children</span> <span class="o">+=</span> <span class="p">(</span><span class="n">new_node</span><span class="p">,</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_node</span>
+</code></pre></div>
+<p>We can now create a tree of connected BiNodes just as we did with Nodes, and
+print information about them as we did before to get the same kind of result.
+The main difference arises when we try to add third child to BiNode(A) which
+will raise a ValueError, as we instructed as a constraint in our new class.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># create three connected BiNodes</span>
+<span class="n">node_a</span> <span class="o">=</span> <span class="n">BiNode</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">node_b</span> <span class="o">=</span> <span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">node_c</span> <span class="o">=</span> <span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># iteratate over BiNodes and print information</span>
+<span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="p">(</span><span class="n">node_a</span><span class="p">,</span> <span class="n">node_b</span><span class="p">,</span> <span class="n">node_c</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">dist</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">is_leaf</span><span class="p">(),</span> <span class="n">node</span><span class="o">.</span><span class="n">is_root</span><span class="p">(),</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">)</span>
+</code></pre></div>
+<p>This is expected to raise an exception due to the new class's constraints:
+<div class="highlight"><pre><span></span><code><span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="o">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span>                                <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">)</span>
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">268</span><span class="p">],</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="o">----&gt;</span> <span class="mi">1</span> <span class="n">node_a</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+
+<span class="n">Input</span> <span class="n">In</span> <span class="p">[</span><span class="mi">266</span><span class="p">],</span> <span class="ow">in</span> <span class="n">BiNode</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dist</span><span class="p">)</span>
+      <span class="mi">9</span> <span class="c1"># raise an exception if the BiNode already has 2 children.</span>
+     <span class="mi">10</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+<span class="o">---&gt;</span> <span class="mi">11</span>     <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Cannot add &gt;2 children to a BiNode.&quot;</span><span class="p">)</span>
+     <span class="mi">12</span> <span class="c1"># else, create and connect the new BiNode</span>
+     <span class="mi">13</span> <span class="n">new_node</span> <span class="o">=</span> <span class="n">BiNode</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="n">dist</span><span class="p">)</span>
+
+<span class="ne">ValueError</span><span class="p">:</span> <span class="n">Cannot</span> <span class="n">add</span> <span class="o">&gt;</span><span class="mi">2</span> <span class="n">children</span> <span class="n">to</span> <span class="n">a</span> <span class="n">BiNode</span><span class="o">.</span>
+</code></pre></div></p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>In summary, classes are ...</p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

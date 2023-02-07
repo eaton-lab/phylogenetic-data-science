@@ -1,0 +1,2038 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2.1-idealized-population/">
+      
+      
+        <link rel="next" href="../2.3-coalescent/">
+      
+      <link rel="icon" href="/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>2.2 - Wright-Fisher Process - Phylogenetic Data Science (IN DEVELOPMENT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HV34HZZD5N"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HV34HZZD5N",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HV34HZZD5N",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#wright-fisher" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-header__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Phylogenetic Data Science (IN DEVELOPMENT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.2 - Wright-Fisher Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-nav__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Phylogenetic Data Science (IN DEVELOPMENT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About/Ethos
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation/Software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/" class="md-nav__link">
+        Columbia course
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          0 - Coding Bootcamp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          0 - Coding Bootcamp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.0-installation-conda/" class="md-nav__link">
+        0.0 - Installation (conda)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.1-jupyter-and-binder/" class="md-nav__link">
+        0.1 - Python Jupyter/Binder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.2-python-types/" class="md-nav__link">
+        0.2 - Python types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.3-python-funcs/" class="md-nav__link">
+        0.3 - Python functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.4-python-classes/" class="md-nav__link">
+        0.4 - Python classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.5-python-style/" class="md-nav__link">
+        0.5 - Python style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          1 - Trees as data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          1 - Trees as data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.1-introduction/" class="md-nav__link">
+        x.1 - Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.2-tree-thinking/" class="md-nav__link">
+        x.2 - Tree Thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.3-visualization/" class="md-nav__link">
+        x.3 - Visualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.4-features-of-trees/" class="md-nav__link">
+        1.4 - Tree data structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.5-code-node-class/" class="md-nav__link">
+        1.5 - Code - Node class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-code-tree-traversal/" class="md-nav__link">
+        1.6 - Code - Tree traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.7-code-tree-class/" class="md-nav__link">
+        1.7 - Code - Tree class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-exercises.md" class="md-nav__link">
+        x.7 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          2 - Evolutionary models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          2 - Evolutionary models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.0-modeling-evolution/" class="md-nav__link">
+        2.0 - Modeling evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.1-idealized-population/" class="md-nav__link">
+        2.1 - Idealized population
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2.2 - Wright-Fisher Process
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2.2 - Wright-Fisher Process
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#under-construction" class="md-nav__link">
+    Under Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wright-fisher-process" class="md-nav__link">
+    Wright-Fisher Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizing-the-wf-process" class="md-nav__link">
+    Visualizing the WF process
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualizing the WF process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulating-wf-process" class="md-nav__link">
+    Simulating WF process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-wf-genealogies" class="md-nav__link">
+    Interpreting WF genealogies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genealogy-of-samples" class="md-nav__link">
+    Genealogy of samples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coalescence" class="md-nav__link">
+    Coalescence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.3-coalescent/" class="md-nav__link">
+        2.3 - The Coalescent
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.4-coalescent-simulation/" class="md-nav__link">
+        2.4 - Coalescent simulation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.x-exercises/" class="md-nav__link">
+        2.x - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          3 - Mutation Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          3 - Mutation Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.x-DNA-Markov.md" class="md-nav__link">
+        3.0 - Modeling Evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        3.x - Probabilistic and Generative Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.2-markov-models/" class="md-nav__link">
+        3.2 - Markov models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3.x-other-models.md" class="md-nav__link">
+        3.x - Other models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-reading-list.md" class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          4 - Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          4 - Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.1-data-formats.md" class="md-nav__link">
+        x.1 - data formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.2-strings-and-matrices.md" class="md-nav__link">
+        x.2 - strings, tables, and matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-simulating-traits.md" class="md-nav__link">
+        x.x - Code - simulating data/traits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-sequence-alignment.md" class="md-nav__link">
+        x.x - Code - sequence alignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-converting-file-formats.md" class="md-nav__link">
+        x.x - Code - converting file formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read, write, parse, find, and clean phylip, fasta, fastq, and vcf data." class="md-nav__link">
+        Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          5 - Phylogenetic Inference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          5 - Phylogenetic Inference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - history
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - choosing a method
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.3 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.4 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          6 - Inference (Parsimony)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          6 - Inference (Parsimony)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.0-fitch-parsimony/" class="md-nav__link">
+        6.0 - Fitch Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.1-fitch-multiple-traits/" class="md-nav__link">
+        6.1 - Character matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        6.2 - Sankoff Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          7 - Inference (Distance-based)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          7 - Inference (Distance-based)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.0-introduction/" class="md-nav__link">
+        7.0 - Distance based trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.1-least-squares/" class="md-nav__link">
+        7.1 - Code - Least-squares
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.2-upgma/" class="md-nav__link">
+        7.2 - Code - UPGMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.3-neighbor-joining/" class="md-nav__link">
+        7.3 - Code - Neighbor Joining
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.4-applied/" class="md-nav__link">
+        7.4 - Applied examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.5-new-applications/" class="md-nav__link">
+        7.5 - New Applications
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          8 - Inference (Likelihood)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          8 - Inference (Likelihood)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - Maximum Likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - Genealogies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - Sequences
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.3 - Inferring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+          9 - Multispecies Coalescent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          9 - Multispecies Coalescent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.0-intro.md" class="md-nav__link">
+        9.0 - Species trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.1-likelihood.md" class="md-nav__link">
+        9.1 - Coalescent likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genealogical.md" class="md-nav__link">
+        9.2 - Genealogical thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genetics.md" class="md-nav__link">
+        9.3 - Genetic thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.3-MSC.md" class="md-nav__link">
+        9.4 - MSC likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#under-construction" class="md-nav__link">
+    Under Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wright-fisher-process" class="md-nav__link">
+    Wright-Fisher Process
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualizing-the-wf-process" class="md-nav__link">
+    Visualizing the WF process
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualizing the WF process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simulating-wf-process" class="md-nav__link">
+    Simulating WF process
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-wf-genealogies" class="md-nav__link">
+    Interpreting WF genealogies
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genealogy-of-samples" class="md-nav__link">
+    Genealogy of samples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#coalescence" class="md-nav__link">
+    Coalescence
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    Summary
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="wright-fisher">Wright-Fisher<a class="headerlink" href="#wright-fisher" title="Permanent link">&para;</a></h1>
+<h2 id="under-construction">Under Construction<a class="headerlink" href="#under-construction" title="Permanent link">&para;</a></h2>
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this lesson you will be familiar with:</p>
+<ol>
+<li>The Wright-Fisher (WF) process model.</li>
+<li>Assumptions underlying this model.</li>
+<li>calculating the probability two gene copies share a parent.</li>
+<li>extensions of this probabilistic thinking to studying genealogies.</li>
+</ol>
+<h2 id="wright-fisher-process">Wright-Fisher Process<a class="headerlink" href="#wright-fisher-process" title="Permanent link">&para;</a></h2>
+<p>The Wright-Fisher process is considered one of the simplest models in 
+population genetics. Compared to an idealized population, in which 
+allele frequencies are always in HW equilibrium, and do not change, 
+the WF process by default relaxes at least one assumption: population 
+sizes are not infinite.</p>
+<p>The introduction of finite population sizes allows for allele frequencies
+to change over time, as genetic drift will cause an allele to randomly 
+become either entirely fixed, or lost with the rate of fixation being a 
+function of the population size. In this lesson we will write code to 
+simulate and visualize a population evolving under a WF process, and to
+understand how population size affects not only the rate of genetic drift,
+but also the genealogical relationships among samples, and ultimately,
+the concept that these two results are linked.
+Before we proceed, however, it is important to discuss some terminology.</p>
+<h2 id="visualizing-the-wf-process">Visualizing the WF process<a class="headerlink" href="#visualizing-the-wf-process" title="Permanent link">&para;</a></h2>
+<p>To help understand WF models and their connection to genealogies it is
+helpful to visualize stochastic outcomes of a WF process. The following
+visualizations are created using <code>toyplot</code>, and you can learn more about
+the visualization code in the next [code lesson]. Here we will simply use
+the <code>WrightFisherPlot</code> class from the dropdown below to generate and draw
+WF process outcomes. This takes a <code>seed</code> parameter for a random number
+generator to produce different outcomes. </p>
+<details class="example">
+<summary>WF process visualization code using toyplot</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">toyplot</span>
+
+<span class="k">class</span> <span class="nc">WrightFisherPlot</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="p">:</span> <span class="nb">int</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">Generator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">popsize</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="n">time</span><span class="p">,</span> <span class="n">popsize</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">Canvas</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">coordinates</span><span class="o">.</span><span class="n">Cartesian</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setup_axes</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;toyplot.Mark&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># get node coordinates</span>
+        <span class="n">ys</span><span class="p">,</span> <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_setup_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># setup the canvas and axes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">xshow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Time (generations)&quot;</span><span class="p">,</span> <span class="n">margin</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">25</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s2">&quot;font-size&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">30</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">locator</span><span class="o">.</span><span class="n">Extended</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">add_haploids</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add circle marks for gene copies.&quot;&quot;&quot;</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;marker&quot;</span><span class="p">:</span> <span class="s2">&quot;o&quot;</span><span class="p">,</span> 
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">,</span> <span class="c1">#toyplot.color.Palette()[1]</span>
+            <span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">7.5</span><span class="p">,</span>
+            <span class="s2">&quot;mstyle&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;stroke&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;stroke-opacity&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;stroke-width&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">},</span>
+        <span class="p">}</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">[</span><span class="s1">&#39;haploids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
+            <span class="o">**</span><span class="n">style</span><span class="p">,</span>
+        <span class="p">);</span>
+
+    <span class="k">def</span> <span class="nf">add_diploids</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds a rectangle around pairs of gene copies to represent a diploid individual.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">[</span><span class="s1">&#39;diploids&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][::</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.25</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][::</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">1.25</span><span class="p">,</span> 
+            <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][::</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="mf">0.25</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][::</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mf">0.25</span><span class="p">,</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fill&quot;</span><span class="p">:</span> <span class="s2">&quot;lightgrey&quot;</span><span class="p">,</span> <span class="s2">&quot;stroke&quot;</span><span class="p">:</span> <span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="s2">&quot;stroke-opacity&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;stroke-width&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">},</span>
+        <span class="p">);</span>
+
+    <span class="k">def</span> <span class="nf">add_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sort</span><span class="p">:</span> <span class="nb">bool</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds lines from gene copies to randomly sampled parent gene copies each generation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># iterate over each generation adding pairs of node indices</span>
+        <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="c1"># children idxs span from left to right</span>
+            <span class="n">lower_idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">gen</span><span class="p">]</span>
+
+            <span class="c1"># randomly sample parent idxs (some have many children, some none)</span>
+            <span class="n">upper_idxs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">gen</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="n">gen</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="c1"># get sorting index for the upper idxs</span>
+            <span class="k">if</span> <span class="n">sort</span><span class="p">:</span>
+                <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">upper_idxs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">upper_idxs</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+            <span class="c1"># update array of edges</span>
+            <span class="n">iedges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">([</span><span class="n">lower_idxs</span><span class="p">,</span> <span class="n">upper_idxs</span><span class="p">[</span><span class="n">order</span><span class="p">]])</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span> <span class="n">iedges</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="n">iedges</span>
+
+        <span class="c1"># style the graph</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vlshow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;ecolor&quot;</span><span class="p">:</span> <span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="s2">&quot;ewidth&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s1">&#39;vsize&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;estyle&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># add graph lines from lower_idxs to upper_idxs, using coordinates for all</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">[</span><span class="s1">&#39;genealogy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">graph</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span>
+            <span class="n">vcoordinates</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">))],</span>
+            <span class="o">**</span><span class="n">style</span><span class="p">,</span>
+        <span class="p">);</span>
+
+    <span class="k">def</span> <span class="nf">add_sampled_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">samples</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Add sampled genealogy lines from N random samples, or a list of sampled indices.&quot;&quot;&quot;</span>   
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="n">nsample</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">samples</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rng</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="n">samples</span><span class="p">,</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>          
+
+        <span class="c1"># base styles for the graph</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;vlshow&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span> <span class="s2">&quot;ecolor&quot;</span><span class="p">:</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">color</span><span class="o">.</span><span class="n">Palette</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;ewidth&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;vsize&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;estyle&#39;</span><span class="p">:</span> <span class="p">{}}</span>
+        <span class="n">style</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># get selected edges to show</span>
+        <span class="n">tracked</span> <span class="o">=</span> <span class="n">samples</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">tracked</span><span class="p">:</span>
+                <span class="n">tracked</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># subset the edges to graph</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">tracked</span><span class="p">)</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+
+        <span class="c1"># apply unique color to coalescent events</span>
+        <span class="k">if</span> <span class="s1">&#39;vcolor&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">style</span><span class="p">:</span>
+            <span class="n">vcolors</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">vmarkers</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">edges</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">edges</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                    <span class="n">vcolors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;yellow&#39;</span><span class="p">)</span>
+                    <span class="n">vmarkers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">vcolors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+                    <span class="n">vmarkers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;o&quot;</span><span class="p">)</span>
+            <span class="n">style</span><span class="o">.</span><span class="n">update</span><span class="p">({</span>
+                <span class="s1">&#39;vcolor&#39;</span><span class="p">:</span> <span class="n">vcolors</span><span class="p">,</span>
+                <span class="s1">&#39;vstyle&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;stroke&#39;</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="s1">&#39;stroke-width&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+                <span class="s1">&#39;vmarker&#39;</span><span class="p">:</span> <span class="n">vmarkers</span><span class="p">,</span>
+            <span class="p">})</span>
+
+        <span class="c1"># add graph lines from lower_idxs to upper_idxs, using coordinates for all</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">marks</span><span class="p">[</span><span class="s1">&#39;genealogy&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">graph</span><span class="p">(</span>
+            <span class="n">edges</span><span class="p">,</span>
+            <span class="n">vcoordinates</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">edges</span><span class="p">))],</span>
+            <span class="o">**</span><span class="n">style</span><span class="p">,</span>
+        <span class="p">);</span>
+</code></pre></div>
+</details>
+<h3 id="simulating-wf-process">Simulating WF process<a class="headerlink" href="#simulating-wf-process" title="Permanent link">&para;</a></h3>
+<p>A WF process can be simulated quite easily. It is a discrete-time process
+where each generation 2N haploid gene copies exist in a population of 
+census size N. Because the population is assumed to be randomly mating
+we can randomly assign haploid gene copies to be grouped into diploid 
+individuals. This grouping has no effect on how the model operates 
+unless some other model assumptions were to be relaxed, and is thus only
+for visualization purposes. To simulate one generation of the WF process 
+one needs only to create a new generation of 2N haploid copies and to 
+randomly 2N copies, with replacement, from the previous generation
+to serve as their parents. </p>
+<p>The result of this random mating process, played out over multiple 
+generations, looks like the plot below. The process gives rise to a 
+genealogy of gene copies. Lines are drawn to connect gene copies in each
+generation from parent to offspring. Grey rectangles represent diploid 
+individuals, which contain two gene copies, represented by red circles.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># example WF plot</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">WrightFisherPlot</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_diploids</span><span class="p">()</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_lines</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_haploids</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img _="," alt="WF-plot-2.2.0" loading="lazy" src="../../chapter-1/notebooks/fig.2.2.0.svg" width="700" />
+  </p>
+<figcaption>Fig. 2.2.0. Wright-Fisher process.</figcaption>
+</figure>
+<h3 id="interpreting-wf-genealogies">Interpreting WF genealogies<a class="headerlink" href="#interpreting-wf-genealogies" title="Permanent link">&para;</a></h3>
+<p>This process is much easier to comprehend when the edges are sorted so that
+they are easier to read. Remember, however, that regardless of this sorting
+for visualization purposes, that the parent copy of each gene copy is still 
+being randomly sampled each generation. This visualization thus retains the
+same probability of a gene copy leaving descendants to the next generation, 
+but is biased in the appearance of greater selfing (one or both
+copies in an individual ending up together in an individual in the next 
+generation). Thus the outlines of the diploid individuals could be hidden
+at this point, after sorting the edges, to be more accurate.</p>
+<p>Time in this model flows from top to bottom, such that the gene copies at 
+time=0 represent the present, and the ancestors of these gene copies, 
+as well as other gene copies that did not leave descendants, exist in past generations (gens 1 - 11 in this visualization).</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># example WF plot with sorted edges for visualization</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">WrightFisherPlot</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_diploids</span><span class="p">()</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_lines</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_haploids</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img _="," alt="WF-plot-2.2.1" loading="lazy" src="../../chapter-1/notebooks/fig.2.2.1.svg" width="700" />
+  </p>
+<figcaption>Fig. 2.2.1. WF process with edges sorted for visualization.</figcaption>
+</figure>
+<p>Understanding the flow of time in these diagrams is very important, and 
+can sometimes be challenging, since different authors may present the same
+type of figure flowing top to bottom, or bottom to top. Fortunately, there
+is a simple trick to easily identify the flow of time, which is to identify
+the <em>direction in which every node has an edge flowing</em>. That direction will
+be backwards in time. This is because <strong>every gene copy has an ancestor, 
+but not every gene copy will leave descendants</strong>. The latter outcome is 
+a consequence of genetic drift, where a random sampling process will cause
+some gene copies to leave multiple descendants, while others will leave none.</p>
+<p>The plot below zooms in on just the final three generations of a WF process
+simulation. You can see that every gene copy has an edge pointing up
+(backwards in time), but many gene copies do not have an edge pointing down.</p>
+<p>As we said earlier, mating occurs randomly in this model, without regard to
+the way in which gene copies are grouped inside of diploid individuals. 
+Consequently, it is possible for odd mating strategies to occur, such as 
+selfing.
+ <!-- (note that sorting the edges of the visualization affects the  --></p>
+<!-- appearance of selfing rates). -->
+<!-- , which is a case where one or both gene copies from a diploid 
+individual end up together  represented as both copies in a 
+contains two of the same copies as the parent. 
+ -->
+<p>In the figure below, generated with the random seed 123, look at the 
+first two individuals from the left in generation 0. The first 
+inherits the same two gene copies that were present in an 
+individual in the previous generation. The second inherits two copies of 
+a single gene copy that was present in an individual in the previous 
+generation. The first is a representation of diploid selfing, and the 
+second a form of haploid selfing. This visualization in fact has a greater
+representation of selfing that would be expected under random mating, since
+the edges are sorted for visualization purposes. </p>
+<p>Although this represents a form of inbreeding, it would be an expected 
+level of inbreeding in a population of this effective population size, 
+if it was generated by random mating. A non-random mating strategy, by 
+contrast, may lead to more or less inbreeding than this expectation, 
+by perhaps preventing selfing, or incorporating behavior or geography 
+into mating. The simple WF process thus provides a null expectation 
+against which to compare.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># example WF plot with sorted edges for visualization</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">WrightFisherPlot</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_diploids</span><span class="p">()</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_lines</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_haploids</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img _="," alt="WF-plot-2.2.2" loading="lazy" src="../../chapter-1/notebooks/fig.2.2.2.svg" width="700" />
+<br />
+<!-- <figcaption>An example phylogenetic tree drawing.</figcaption> --></p>
+</figure>
+<h2 id="genealogy-of-samples">Genealogy of samples<a class="headerlink" href="#genealogy-of-samples" title="Permanent link">&para;</a></h2>
+<p>A consequence of this simple discrete random sampling process, repeated 
+over multiple generations, is that any gene copy that exists at the 
+present can trace back a tree-like genealogical history with any other 
+gene copy at the present. As an example, we can randomly sample 5 gene 
+copies at the present and focus on their individual ancestries. As we 
+can see, they each trace back some number of generations before they 
+eventually share a common ancestor; an ancestral gene copy from which 
+they are all descended. </p>
+<p>This is demonstrated below. Here we sample 6 gene copies in total, coming
+from 3 diploid individuals (which we'll refer to as individuals 1, 2, and 3, 
+from left to right), which are shown in bold compared to unsampled gene 
+copies and their ancestors. The common ancestors of sampled gene copies
+are highlighted as yellow squares. All of the 6 gene copies that we sampled
+in this scenario coalesce into a single common ancestor gene copy at 
+time=16 (16 generation back from the present). The two gene copies in 
+individuals 1 and 3 each share a MRCA just one generation back from the
+present. However, the two gene copies in individual 2 do not share a 
+common ancestor until generation 12. In fact, one of the gene copies
+from this individual coalesces with the common ancestor of the gene copies
+of individual 1 long before it coalesces with the other gene copy present
+in the same individual.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># example WF plot with sampled tips genealogy</span>
+<span class="n">wf</span> <span class="o">=</span> <span class="n">WrightFisherPlot</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">444</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="mi">21</span><span class="p">,</span> <span class="n">popsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">700</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">600</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_diploids</span><span class="p">()</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_lines</span><span class="p">(</span><span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">eopacity</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_sampled_lines</span><span class="p">(</span><span class="n">samples</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">],</span> <span class="n">ecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">ewidth</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">vsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">wf</span><span class="o">.</span><span class="n">add_haploids</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</code></pre></div>
+<figure>
+<p><img _="," alt="WF-plot-2.2.3" loading="lazy" src="../../chapter-1/notebooks/fig.2.2.3.svg" width="700" />
+  </p>
+<figcaption>Fig. 2.2.3 Coalescence in a WF process.</figcaption>
+</figure>
+<h2 id="coalescence">Coalescence<a class="headerlink" href="#coalescence" title="Permanent link">&para;</a></h2>
+<p>Sewall Wright noted that in a finite population evolving under a WF process
+the probability that two random gene copies will share a common ancestor 
+in the previous generation is <code>1/2N</code>, since there are 2N gene copies in 
+the population. This type of event, where two descendant gene copies merge
+into a common ancestor, when viewed backwards in time, is termed a 
+<em>coalescence</em>. It turns that this view of population histories, in the form
+of probabilistic statements about common ancestry, can be a very powerful
+way to describe evolution in populations. In fact, an entire
+statistical framework has been developed to study populations based on
+probabilistic expectations for the time and its variance until 
+some number of samples coalesce, called Coalescent Theory. This is the 
+subject of the next lesson.</p>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<ol>
+<li>A Wright-Fisher process, or model, is a discrete-time process of 
+reproduction in an idealized population of finite size over multiple
+generations.</li>
+<li>Interpreting a WF-process plot requires understanding the direction 
+of time, and which gene copies are ancestors or descendants of others.</li>
+<li>The WF process gives rise to genealogical relationships among gene
+copies. </li>
+<li>All gene copies in a population will eventually coalescent to a common
+ancestor. </li>
+<li>The probability that two gene copies share a common ancestor 1 generation
+ago is <code>1 / 2Ne</code>.</li>
+</ol>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2278 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../2.0-modeling-evolution/">
+      
+      
+        <link rel="next" href="../2.2-wright-fisher/">
+      
+      <link rel="icon" href="/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.11">
+    
+    
+      
+        <title>2.1 - Idealized population - Phylogenetic Data Science (IN DEVELOPMENT)</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-HV34HZZD5N"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-HV34HZZD5N",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-HV34HZZD5N",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modeling-evolution-idealized-populations" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-header__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Phylogenetic Data Science (IN DEVELOPMENT)
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              2.1 - Idealized population
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.38 1.19 4.47 3 5.74V17a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2.26c1.81-1.27 3-3.36 3-5.74a7 7 0 0 0-7-7M9 21a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1H9v1Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7M9 21v-1h6v1a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1m3-17a5 5 0 0 0-5 5c0 2.05 1.23 3.81 3 4.58V16h4v-2.42c1.77-.77 3-2.53 3-4.58a5 5 0 0 0-5-5Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Phylogenetic Data Science (IN DEVELOPMENT)" class="md-nav__button md-logo" aria-label="Phylogenetic Data Science (IN DEVELOPMENT)" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Phylogenetic Data Science (IN DEVELOPMENT)
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/eaton-lab/phylogenetic-data-science" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About/Ethos
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/" class="md-nav__link">
+        Installation/Software
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/" class="md-nav__link">
+        Columbia course
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          0 - Coding Bootcamp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          0 - Coding Bootcamp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/getting-started/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.0-installation-conda/" class="md-nav__link">
+        0.0 - Installation (conda)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.1-jupyter-and-binder/" class="md-nav__link">
+        0.1 - Python Jupyter/Binder
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.2-python-types/" class="md-nav__link">
+        0.2 - Python types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.3-python-funcs/" class="md-nav__link">
+        0.3 - Python functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.4-python-classes/" class="md-nav__link">
+        0.4 - Python classes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bootcamp/0.5-python-style/" class="md-nav__link">
+        0.5 - Python style
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          1 - Trees as data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          1 - Trees as data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.1-introduction/" class="md-nav__link">
+        x.1 - Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.2-tree-thinking/" class="md-nav__link">
+        x.2 - Tree Thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.3-visualization/" class="md-nav__link">
+        x.3 - Visualization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.4-features-of-trees/" class="md-nav__link">
+        1.4 - Tree data structure
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.5-code-node-class/" class="md-nav__link">
+        1.5 - Code - Node class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-code-tree-traversal/" class="md-nav__link">
+        1.6 - Code - Tree traversal
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.7-code-tree-class/" class="md-nav__link">
+        1.7 - Code - Tree class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-1/1.6-exercises.md" class="md-nav__link">
+        x.7 - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+          2 - Evolutionary models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          2 - Evolutionary models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.0-modeling-evolution/" class="md-nav__link">
+        2.0 - Modeling evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          2.1 - Idealized population
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        2.1 - Idealized population
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#under-construction" class="md-nav__link">
+    Under Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genetic-variation" class="md-nav__link">
+    Genetic variation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genetic-variation-and-genealogies" class="md-nav__link">
+    Genetic variation and genealogies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#population-genetics" class="md-nav__link">
+    Population genetics
+  </a>
+  
+    <nav class="md-nav" aria-label="Population genetics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idealized-populations" class="md-nav__link">
+    Idealized populations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardy-weinberg-expectation" class="md-nav__link">
+    Hardy-Weinberg Expectation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computing-hw" class="md-nav__link">
+    Computing HW
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binomial-sampling" class="md-nav__link">
+    Binomial sampling
+  </a>
+  
+    <nav class="md-nav" aria-label="Binomial sampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deviating-from-hardy-weinberg" class="md-nav__link">
+    Deviating from Hardy Weinberg.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling-error-is-genetic-drift" class="md-nav__link">
+    Sampling error is genetic drift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allele-frequencies" class="md-nav__link">
+    Allele frequencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-of-genetic-drift" class="md-nav__link">
+    Rate of genetic drift
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-hw-is-relevant-to-phylogenetics" class="md-nav__link">
+    Why HW is relevant to phylogenetics
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.2-wright-fisher/" class="md-nav__link">
+        2.2 - Wright-Fisher Process
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.3-coalescent/" class="md-nav__link">
+        2.3 - The Coalescent
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.4-coalescent-simulation/" class="md-nav__link">
+        2.4 - Coalescent simulation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2.x-exercises/" class="md-nav__link">
+        2.x - Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+          3 - Mutation Models
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          3 - Mutation Models
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.x-DNA-Markov.md" class="md-nav__link">
+        3.0 - Modeling Evolution
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        3.x - Probabilistic and Generative Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-3/3.2-markov-models/" class="md-nav__link">
+        3.2 - Markov models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3.x-other-models.md" class="md-nav__link">
+        3.x - Other models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1-reading-list.md" class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          4 - Data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          4 - Data
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.1-data-formats.md" class="md-nav__link">
+        x.1 - data formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4.2-strings-and-matrices.md" class="md-nav__link">
+        x.2 - strings, tables, and matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-simulating-traits.md" class="md-nav__link">
+        x.x - Code - simulating data/traits
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-sequence-alignment.md" class="md-nav__link">
+        x.x - Code - sequence alignment
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.x-converting-file-formats.md" class="md-nav__link">
+        x.x - Code - converting file formats
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../read, write, parse, find, and clean phylip, fasta, fastq, and vcf data." class="md-nav__link">
+        Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+          5 - Phylogenetic Inference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          5 - Phylogenetic Inference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - history
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - choosing a method
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.3 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../x.4 - ..." class="md-nav__link">
+        None
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+          6 - Inference (Parsimony)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          6 - Inference (Parsimony)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.0-fitch-parsimony/" class="md-nav__link">
+        6.0 - Fitch Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-6/6.1-fitch-multiple-traits/" class="md-nav__link">
+        6.1 - Character matrices
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        6.2 - Sankoff Parsimony
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+          7 - Inference (Distance-based)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          7 - Inference (Distance-based)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.0-introduction/" class="md-nav__link">
+        7.0 - Distance based trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.1-least-squares/" class="md-nav__link">
+        7.1 - Code - Least-squares
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.2-upgma/" class="md-nav__link">
+        7.2 - Code - UPGMA
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.3-neighbor-joining/" class="md-nav__link">
+        7.3 - Code - Neighbor Joining
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.4-applied/" class="md-nav__link">
+        7.4 - Applied examples
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-7/7.5-new-applications/" class="md-nav__link">
+        7.5 - New Applications
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+          8 - Inference (Likelihood)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_12">
+          <span class="md-nav__icon md-icon"></span>
+          8 - Inference (Likelihood)
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.0 - Maximum Likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.1 - Genealogies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.2 - Sequences
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        x.3 - Inferring
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+          9 - Multispecies Coalescent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_13">
+          <span class="md-nav__icon md-icon"></span>
+          9 - Multispecies Coalescent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.0-intro.md" class="md-nav__link">
+        9.0 - Species trees
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.1-likelihood.md" class="md-nav__link">
+        9.1 - Coalescent likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genealogical.md" class="md-nav__link">
+        9.2 - Genealogical thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.2-genetics.md" class="md-nav__link">
+        9.3 - Genetic thinking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../chapter-9/9.3-MSC.md" class="md-nav__link">
+        9.4 - MSC likelihood
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Reading and Exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#under-construction" class="md-nav__link">
+    Under Construction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#learning-objectives" class="md-nav__link">
+    Learning objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genetic-variation" class="md-nav__link">
+    Genetic variation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#genetic-variation-and-genealogies" class="md-nav__link">
+    Genetic variation and genealogies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#population-genetics" class="md-nav__link">
+    Population genetics
+  </a>
+  
+    <nav class="md-nav" aria-label="Population genetics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#idealized-populations" class="md-nav__link">
+    Idealized populations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardy-weinberg-expectation" class="md-nav__link">
+    Hardy-Weinberg Expectation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computing-hw" class="md-nav__link">
+    Computing HW
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#binomial-sampling" class="md-nav__link">
+    Binomial sampling
+  </a>
+  
+    <nav class="md-nav" aria-label="Binomial sampling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#deviating-from-hardy-weinberg" class="md-nav__link">
+    Deviating from Hardy Weinberg.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling-error-is-genetic-drift" class="md-nav__link">
+    Sampling error is genetic drift
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#allele-frequencies" class="md-nav__link">
+    Allele frequencies
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rate-of-genetic-drift" class="md-nav__link">
+    Rate of genetic drift
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-hw-is-relevant-to-phylogenetics" class="md-nav__link">
+    Why HW is relevant to phylogenetics
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="modeling-evolution-idealized-populations">Modeling evolution: idealized populations<a class="headerlink" href="#modeling-evolution-idealized-populations" title="Permanent link">&para;</a></h1>
+<h2 id="under-construction">Under Construction<a class="headerlink" href="#under-construction" title="Permanent link">&para;</a></h2>
+<!-- 
+### Interactive Notebook
+...
+ -->
+
+<h2 id="learning-objectives">Learning objectives<a class="headerlink" href="#learning-objectives" title="Permanent link">&para;</a></h2>
+<p>By the end of this lesson you will:</p>
+<ul>
+<li>Know the assumptions that underlie an 'idealized population'.</li>
+<li>Understand the concept of Hardy-Weinberg equilibrium. </li>
+</ul>
+<h2 id="genetic-variation">Genetic variation<a class="headerlink" href="#genetic-variation" title="Permanent link">&para;</a></h2>
+<p>Consider a population that has variation at a single gene (A) in the form
+of two alleles (A1 and A2) which differ by a single mutation. We may be 
+interested in the frequency of the two alleles in this population; how 
+much more frequent does one occur relative to the other? If we assume our
+diploid population is of size N, then there are 2N gene copies, every one 
+of which exists as either an A1 or A2 <em>allele</em>. How can we best measure 
+the genetic diversity of this population? How many samples do we need? And 
+what can we learn about a population by measuring its genetic diversity at 
+a single gene? These types of questions are typically considered to be 
+within the discipline of <em>population genetics</em>, a field that has traditionally
+been treated as distinct from <em>phylogenetics</em>. However, as we will see, 
+developments in recent decades have significantly bridged a gap between
+these fields. Major questions in both disciplines, such as predicting
+changes in allele frequencies, or estimating divergence times between 
+species, can both be modeled as an outcome of genealogical (tree-based)
+processes.</p>
+<p>The term <em>allele</em> above refers to the state of information in a gene 
+copy, i.e., its <em>haplotype</em>, which arose as a consequence of mutations 
+throughout its genealogical history. So far, we have considered only
+two alleles in this population. If a new mutation were to arise at a single 
+copy of this gene, then we could also consider a third allele, such as A3; 
+but for simplicity, we will assume for now that only two alleles exist 
+in the population. <em>In fact, these types of simplifying assumptions are 
+the topic of this lesson.</em></p>
+<h2 id="genetic-variation-and-genealogies">Genetic variation and genealogies<a class="headerlink" href="#genetic-variation-and-genealogies" title="Permanent link">&para;</a></h2>
+<p>Throughout this chapter we will reinforce a clear distinction between 
+relatedness of gene copies, which is a reflection of their 
+<em>usually unobservable</em> genealogical relationships, versus the 
+identity of gene copies, such as their allelic state, which is an 
+<em>observable/measurable</em> character that arose as a consequence of 
+mutations occurring throughout their genealogical history.</p>
+<!-- and which can be used to infer their genealogy.  -->
+
+<p>Our example above is a clear case of this distinction. All 2N gene copies
+share a genealogy in which some are more closely related to others, however,
+because there is only a single mutation in the population, there is at most 
+enough information to group these gene copies into two groups, and certainly
+not enough information to infer their full genealogy. <!-- This topic will 
+be reinforced in the coming chapters through the use of coalescent 
+simulation software. --></p>
+<details class="example">
+<summary>Simulate and plot a genealogy and SNP</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">ipcoal</span>
+
+<span class="c1"># simulate a coalescent genealogy with a single SNP</span>
+<span class="n">mod</span> <span class="o">=</span> <span class="n">ipcoal</span><span class="o">.</span><span class="n">Model</span><span class="p">(</span><span class="n">Ne</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">nsamples</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">sim_snps</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mod</span><span class="o">.</span><span class="n">draw_genealogy</span><span class="p">();</span>  <span class="c1"># toytree.utils.tree_sequence().draw_tree(idx=0);</span>
+</code></pre></div>
+</details>
+<p><mark>Drawing of a genealogy with a single mutation.</mark></p>
+<h2 id="population-genetics">Population genetics<a class="headerlink" href="#population-genetics" title="Permanent link">&para;</a></h2>
+<p>Let's return to our example of genetic variation in a population. A primary
+goal of population genetics is to develop models of evolution within
+populations that can be used to predict changes in allele frequencies 
+over time. Such models can be discrete or continuous in time, and can 
+include parameters to describe how individuals live, die, reproduce, and 
+interact with each other and their environment. However, as we will see,
+there is a benefit to constructing simple mathematical models to describe
+evolution in populations, models that include as few of processes and 
+parameters as possible, while still being informative. </p>
+<p>In many cases, these simple models can be incredibly powerful for 
+describing evolution. Here we will focus on two genealogical models
+of evolution within populations, the <strong>Wright-Fisher (WF) process</strong>, and 
+the <strong>Coalescent</strong>. The latter is a mathematical approximation of the
+former, and so we will first focus on the WF process. </p>
+<!-- The connection 
+between these simple "bean bag" models of population genetics, and 
+-->
+
+<!--  
+### Model assumptions
+Before proceeding to the topic of coalescent models and simulation 
+techniques, however, it is important to understand fundamental assumptions
+underlying these models. For example, 
+ -->
+
+<h3 id="idealized-populations">Idealized populations<a class="headerlink" href="#idealized-populations" title="Permanent link">&para;</a></h3>
+<p>Amazingly, much of the foundational work in population genetics was developed 
+<em>before we even knew about DNA</em>, and involved primarily developing 
+statistical models that could convert verbal descriptions of evolution 
+occurring in populations into probability statements. An important 
+basis for this was the application of Mendel's theory of particulate 
+(non-blending) inheritance to describe gene copies as discrete units that
+are passed from generation to generation, where the probability that
+particular gene copies occur more or less in the next generation
+is a manifestation of allele frequencies changing over time.</p>
+<!-- Mendel showed that genes are discrete units, diploid organisms contain 
+two copies at every gene, and that the two copies have equal probability 
+of being passed on to offspring through the formation of haploid gametes. 
+This simple 
+formalized as a probability statement, and used to develop probabilistic 
+models.  -->
+
+<p>To formalize this process into a probabilistic model <strong>we need to make 
+some assumptions about populations.</strong> 
+An <em>idealized population</em> refers to a theoretical population that meets 
+a particular set of unrealistic but useful assumptions. Most notably, 
+that it is <em>infinite in size</em>, that it has discrete non-overlapping 
+generations, and that the individuals within it are <em>randomly mating</em>. 
+As we will see, these and other assumptions can be relaxed to allow 
+for further insights into their effect on the model. Overall, the 
+purpose of these population genetic models is to understand 
+how and why allele frequencies (i.e., the relative abundance of A1 versus 
+A2) change over time.</p>
+<h3 id="hardy-weinberg-expectation">Hardy-Weinberg Expectation<a class="headerlink" href="#hardy-weinberg-expectation" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Hardy%E2%80%93Weinberg_principle"><em>Hardy-Weinberg</em> equilibrium</a> is a statement that <strong>the frequencies of 
+alleles (variants at a gene) and genotypes (combinations of alleles within
+diploid individuals at a gene) will remain constant</strong> through time in 
+an <em>idealized population</em> in the absence of <span style="color:red">
+selection, mutation, migration, and genetic drift.</span> </p>
+<p>This is not actually a super surprising statement in terms of statistics, 
+but more so in terms of evolution. It is identifying that these processes are fundamental to explaining why allele frequencies change over time, and also, 
+that the process of <em>segregation of alleles</em> during Meiosis (i.e., Mendelian Inheritance) is not expected to change allele frequencies on its own. 
+The concept of Hardy Weinberg equilibrium is demonstrated in the figure below:
+(1) given some starting genotype frequencies; (2) we can predict the frequency
+of their gametes by assuming equal fitness among genotypes; (3) we can then
+also predict the probability of formation of new diploids by assuming
+random mating of gametes; (4) which leads to a new population of diploids 
+at new genotype frequencies.</p>
+<figure>
+<p><img _="," alt="WF-plot-2.1.0" loading="lazy" src="../../chapter-1/notebooks/fig-2.1.0.svg" width="1000" />
+<br />
+<!-- <figcaption>An example phylogenetic tree drawing.</figcaption> --></p>
+</figure>
+<!-- <img src=https://eaton-lab.org/slides/fundamentals2019/session-9-popgen/data/hardy-weinberg.png style="width:60%"> -->
+
+<h3 id="computing-hw">Computing HW<a class="headerlink" href="#computing-hw" title="Permanent link">&para;</a></h3>
+<p>In the first cell of the figure above the population is initially not in 
+Hardy-Weinberg equilibrium. We can tell this by looking at the genotype 
+frequencies; there appears to be a deficit of heterozygotes compared to 
+what you would expect if the population were randomly mating. But what is 
+the null expectation for the number of heterozygotes that should exist? 
+Well, this is something that Hardy-Weinberg can tell us. A population is 
+expected to reach HW equilibrium after just a single generation, no matter 
+what its starting allele frequencies are, if it meets the assumptions of 
+an idealized population (i.e., infinite in size and randomly mating). </p>
+<p>More specifically, after a single generation the genotype frequencies 
+(e.g., A1A1, A1A2, and A2A2) will reach HW equilibrium, despite the fact 
+that allele frequencies (e.g., A1 and A2) do not change. In other words, 
+the only thing that is changing is the way in which gene copies are 
+grouped together into diploids.</p>
+<p>This expectation can be computed exactly using probability statements
+implemented in Python. Below we will compute the frequencies for each
+step in the figure above. (We will use the same genotype frequencies 
+but change the allele names to A and B, rather than A1 and A2 to make 
+it easier to read).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">toyplot</span>
+</code></pre></div>
+<div class="highlight"><span class="filename">initial diploid genotype frequencies</span><pre><span></span><code><span class="n">AA</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">AB</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">BB</span> <span class="o">=</span> <span class="mf">0.7</span>
+</code></pre></div>
+<p>The genotype frequencies of the three possible genotypes are initially 
+0.3, 0.0, and 0.7. Each AA parent has two A alleles, each AB parent has 
+one A and one B allele, and each BB parent has two B alleles. We describe
+the genotypes in terms of frequencies, as opposed to total numbers, since 
+the population is infinite in size.</p>
+<p>Based on these frequencies we can calculate the relative frequency of A 
+and B haploid gametes that will be produced by these diploids. We can
+label these frequencies <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(q\)</span>, where <span class="arithmatex">\(p\)</span> is computed as the sum
+of the frequency of AA homozygotes plus &frac12; the frequency of AB heterozygotes; 
+<span class="arithmatex">\(q\)</span> is computed as the sum of the frequency of BB homozygotes plus &frac12; 
+the frequency of AB heterozygoes.</p>
+<p><div class="highlight"><span class="filename">haploid gametes generated by diploids (given model assumptions)</span><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">AA</span> <span class="o">+</span> <span class="p">(</span><span class="n">AB</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">BB</span> <span class="o">+</span> <span class="p">(</span><span class="n">AB</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 0.3 0.7</span>
+</code></pre></div></p>
+<p>You might ask, but what if some of the diploids produced more alleles than
+others? Well, for that to happen would be a manifestation of either drift 
+or selection, both of which we are assuming to be absent from this model. 
+This is key to remember.</p>
+<p>Now that we know the frequency of alleles in the gametes we can calculate 
+the frequency of genotypes formed in the next generation by assuming that 
+populations are randomly mating. AA genotypes are formed by the joining of
+two A gametes, heterozygotes by an A and B gamete, and BB genotypes by the
+joining of two B gametes. So the probability of AA individuals is the 
+probability of sampling <span class="arithmatex">\(p\)</span> twice (<span class="arithmatex">\(p\)</span> * <span class="arithmatex">\(p\)</span>), heterozygotes are the 
+probability of sampling <span class="arithmatex">\(p\)</span> and <span class="arithmatex">\(q\)</span> (or <span class="arithmatex">\(q\)</span> and <span class="arithmatex">\(p\)</span>), and BB homozygotes
+are the probability of sampling <span class="arithmatex">\(q\)</span> twice (<span class="arithmatex">\(q\)</span> * <span class="arithmatex">\(q\)</span>). Once again, note the 
+importance of the assumptions underlying our idealized population for 
+this model prediction.</p>
+<!-- HW expectation: `p**2 + 2pq + q**2 = 1` -->
+
+<p><div class="highlight"><span class="filename">Genotype frequencies of *next* generation of diploids.</span><pre><span></span><code><span class="n">newAA</span> <span class="o">=</span> <span class="n">p</span> <span class="o">*</span> <span class="n">p</span>
+<span class="n">newAB</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p</span> <span class="o">*</span> <span class="n">q</span>
+<span class="n">newBB</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">q</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">newAA</span><span class="p">,</span> <span class="n">newAB</span><span class="p">,</span> <span class="n">newBB</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 0.09 0.42 0.48999999999999994</span>
+</code></pre></div></p>
+<p>Finally, we can put this code together and recreate the plot from above, 
+here using <code>toyplot</code>.</p>
+<details class="example">
+<summary>Code to produce HW plot.</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">toyplot</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span>
+
+<span class="k">class</span> <span class="nc">HardyWeinbergPlot</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aa</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">bb</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">ab</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># get frequencies</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">aa</span> <span class="o">=</span> <span class="n">aa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bb</span> <span class="o">=</span> <span class="n">bb</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ab</span> <span class="o">=</span> <span class="n">ab</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">+</span> <span class="p">(</span><span class="n">ab</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">=</span> <span class="n">bb</span> <span class="o">+</span> <span class="p">(</span><span class="n">ab</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_aa</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_bb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">new_ab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="c1"># create canvas and dict to store axes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">Canvas</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">),</span> 
+            <span class="n">height</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mi">250</span><span class="p">),</span>
+            <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;background-color&quot;</span><span class="p">:</span> <span class="s2">&quot;white&quot;</span><span class="p">},</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="s2">&quot;Cartesian&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="c1"># generate the plot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subplot1</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subplot2</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subplot3</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_subplot4</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_subplot1</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bars</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">aa</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ab</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">aa</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ab</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bb</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;(1) Initial geno frequencies&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">locator</span><span class="o">.</span><span class="n">Explicit</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="s2">&quot;AB&quot;</span><span class="p">,</span> <span class="s2">&quot;BB&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Frequency&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+
+    <span class="k">def</span> <span class="nf">_subplot2</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bars</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">q</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;(2) Gamete frequencies&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">locator</span><span class="o">.</span><span class="n">Explicit</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">locator</span><span class="o">.</span><span class="n">Extended</span><span class="p">(</span><span class="n">only_inside</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Frequency&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+
+    <span class="k">def</span> <span class="nf">_subplot3</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_aa</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_ab</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_ab</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">cell</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">new_bb</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">hlines</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;single&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">grid</span><span class="o">.</span><span class="n">vlines</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;single&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">gaps</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">gaps</span><span class="o">.</span><span class="n">rows</span><span class="p">[</span><span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+        <span class="c1"># style the axes labels for subplot 3</span>
+        <span class="n">axes_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">axes_a</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A                    B&quot;</span>
+        <span class="n">axes_a</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;A                    B&quot;</span>
+        <span class="n">axes_a</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">axes_a</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">axes_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Paternal gametes (sperm)&quot;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Maternal gametes (eggs)&quot;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;(3) Reproduction&quot;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;16px&#39;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-weight&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;normal&#39;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;16px&#39;</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="n">axes_b</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+
+        <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">(</span><span class="n">axes_a</span><span class="p">,</span> <span class="n">axes_b</span><span class="p">):</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">spine</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">spine</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">_subplot4</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">bars</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">new_aa</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_ab</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_bb</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">new_aa</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_ab</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_bb</span><span class="p">],</span> <span class="mi">2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;font-size&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;(4) HW geno frequencies&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">offset</span> <span class="o">=</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">16</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">locator</span><span class="o">.</span><span class="n">Explicit</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AA&quot;</span><span class="p">,</span> <span class="s2">&quot;AB&quot;</span><span class="p">,</span> <span class="s2">&quot;BB&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">labels</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Frequency&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">style</span><span class="p">[</span><span class="s1">&#39;font-size&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="c1"># example</span>
+<span class="n">HardyWeinbergPlot</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">canvas</span>
+</code></pre></div>
+</details>
+<figure>
+<p><img _="," alt="WF-plot-2.1.0" loading="lazy" src="../../chapter-1/notebooks/fig-2.1.0.svg" width="1000" />
+<br />
+<!-- <figcaption>An example phylogenetic tree drawing.</figcaption> --></p>
+</figure>
+<h2 id="binomial-sampling">Binomial sampling<a class="headerlink" href="#binomial-sampling" title="Permanent link">&para;</a></h2>
+<p>One reason I stated in the beginning that the Hardy-Weinberg concept is not
+surprising from a statistical viewpoint is that it can be described by a 
+very simple and common model in statistics, as a <em>binomial sampling problem</em>.
+A <em>Binomial</em> distribution is used in statistics to model the probability of 
+binary outcomes (e.g., True vs. False). For a diploid organism, we can 
+describe the three possible genotypes (A1A1, A1A2, and A2A2) 
+at a locus with two alleles as the probability of sampling the A1 allele
+or not sampling the A1 allele in two independent trials (we do two 
+trials because a diploid organism has two allele copies). Below this 
+is demonstrated. </p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Example of random sample from a binomial distribution for 1 random </span>
+<span class="c1"># outcome (0 or 1) repeated 20 times, where prob of sampling a 1 is p=0.3.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># array([1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1])</span>
+</code></pre></div></p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Similarly, we can draw two random samples for each trial and get </span>
+<span class="c1"># the sum (0, 1, or 2), repeated 20 times.</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># array([2, 0, 0, 2, 0, 1, 1, 0, 2, 1, 0, 0, 1, 1, 0, 1, 0, 0, 0, 2])</span>
+</code></pre></div></p>
+<p>By sampling a very large number of trials, in which each results in 0, 1, or 2
+A's being sampled, we can calculate the expected frequency of each genotype
+by dividing by the total number of trials. As you can see, the result is
+the same frequencies that are predicted by Hardy Weinberg. The HW expectation
+is essentially a way of describing a set of assumptions about a population
+such that the expected genotype frequencies can be described the same as 
+sampling gametes from a Binomial distribution.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># OK, now let&#39;s use this to sample a large number of diploid samples,</span>
+<span class="c1"># these look just like above, a collection of 0s, 1s and 2s.</span>
+<span class="n">new_genotypes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100000</span><span class="p">)</span>
+
+<span class="c1"># and calculate genotype frequencies </span>
+<span class="n">BB</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">new_genotypes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_genotypes</span><span class="p">)</span>
+<span class="n">AB</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">new_genotypes</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_genotypes</span><span class="p">)</span>
+<span class="n">AA</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">new_genotypes</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_genotypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AA</span><span class="p">,</span> <span class="n">AB</span><span class="p">,</span> <span class="n">BB</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 0.08898 0.42062 0.4904</span>
+</code></pre></div></p>
+<h3 id="deviating-from-hardy-weinberg">Deviating from Hardy Weinberg.<a class="headerlink" href="#deviating-from-hardy-weinberg" title="Permanent link">&para;</a></h3>
+<p>You'll notice that the results above are <em>close</em> to the expectation we 
+calculated earlier, but <em>not exactly the same</em>. This is because even though
+we sampled a very large number of random samples, there is still a small 
+amount of sampling error that can cause slight deviations from the 
+expectation. This is an example of genetic drift! And it brings us to 
+our next subject.</p>
+<h3 id="sampling-error-is-genetic-drift">Sampling error is genetic drift<a class="headerlink" href="#sampling-error-is-genetic-drift" title="Permanent link">&para;</a></h3>
+<p>The binomial sampling method allows us to approximate the change in allele 
+frequencies over multiple generations that is expected to occur by genetic 
+drift in a finite sized population. It is important to note that by using 
+finite populations sizes (i.e., allowing for drift) we have violated the 
+assumptions of the Hardy-Weinberg model, and thus both genotype and allele
+frequencies are expected to change each generation. Our model now has an 
+additional parameter, N, which we can modify and see its effect on the 
+results. </p>
+<p>Below is the change in genotype frequencies after one generation when the 
+population size is finite. We can see that they are still very close to the 
+HW expectation. When N is larger it is closer to the expectation, when it 
+is smaller the genotype frequencies deviate further from expectations.</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># model the allele frequencies after one generation of sampling in a finite population</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="c1"># and calculate genotype frequencies </span>
+<span class="n">new_genotypes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+<span class="n">BB</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">new_genotypes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_genotypes</span><span class="p">)</span>
+<span class="n">AB</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">new_genotypes</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_genotypes</span><span class="p">)</span>
+<span class="n">AA</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">new_genotypes</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_genotypes</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">AA</span><span class="p">,</span> <span class="n">AB</span><span class="p">,</span> <span class="n">BB</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># 0.0965 0.4065 0.497</span>
+</code></pre></div></p>
+<h3 id="allele-frequencies">Allele frequencies<a class="headerlink" href="#allele-frequencies" title="Permanent link">&para;</a></h3>
+<p>When we simulate this process over many generations even small fluctuations
+each generation can lead to large changes over time. Genetic drift is a 
+random process (just random sampling!) so in each generation an allele may 
+increase <em>or</em> decrease. </p>
+<p>Here we can see the change in allele frequency of the p allele in 8 replicate
+simulations from the same starting frequency (0.3). Sometimes it increases
+by drift, sometimes in decreases. This simulation uses the binomial sampling
+method described above.</p>
+<details class="example">
+<summary>Code to simulate and plot a random walk</summary>
+<div class="highlight"><pre><span></span><code><span class="c1"># model allele frequency change over 500 generations in population of size 1000 diploids</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">ngens</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">seed</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+<span class="c1"># calculate allele frequencies through time</span>
+<span class="n">afreq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">8</span><span class="p">,</span> <span class="n">ngens</span><span class="p">))</span>
+<span class="n">afreq</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+<span class="k">for</span> <span class="n">rep</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">gen</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ngens</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">genotypes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">binomial</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">afreq</span><span class="p">[</span><span class="n">rep</span><span class="p">,</span> <span class="n">gen</span><span class="p">],</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">freqB</span> <span class="o">=</span> <span class="n">genotypes</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">genotypes</span><span class="p">)</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">afreq</span><span class="p">[</span><span class="n">rep</span><span class="p">,</span> <span class="n">gen</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">freqB</span>
+
+<span class="c1"># plot the replicates</span>
+<span class="kn">import</span> <span class="nn">toyplot</span>
+<span class="n">canvas</span> <span class="o">=</span> <span class="n">toyplot</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">325</span><span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">canvas</span><span class="o">.</span><span class="n">cartesian</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Time (generations)&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Allele frequency (p)&quot;</span><span class="p">)</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">afreq</span><span class="o">.</span><span class="n">T</span><span class="p">);</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">ticks</span><span class="o">.</span><span class="n">show</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">axes</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;Genetic drift&quot;</span>
+</code></pre></div>
+</details>
+<figure>
+<p><img _="," alt="WF-plot-2.1.1" loading="lazy" src="../../chapter-1/notebooks/fig-2.1.1.svg" width="500" />
+<br />
+<!-- <figcaption>An example phylogenetic tree drawing.</figcaption> --></p>
+</figure>
+<h3 id="rate-of-genetic-drift">Rate of genetic drift<a class="headerlink" href="#rate-of-genetic-drift" title="Permanent link">&para;</a></h3>
+<p>By changing the population size parameter N in the code above and running
+multiple iterations we can gain an intuitive sense for the relationship 
+between population size and rate of fixation of alleles in this model -- 
+the rate of genetic drift. If there are more total gene copies in a population,
+then there is a greater chance that a gene copy of an allele in the previous
+generation will be inherited in the next generation. In fact, the probability
+of this is <code>1 / 2N</code>, and thus the probability that a specific gene
+copy will not be replicated to the next generation is <code>1 - 1 / 2N</code>. 
+In the coming lessons we will return to this probability statement to 
+show its many applications and extensions.</p>
+<!--  As a relevant exampe to this 
+lesson, we can think about genetic drift in terms of the rate at which 
+genetic variation in a population is expected to be lost, as a function
+of $N_e$. Heterozygosity is expected to decline at a rate of 1/2$N_e$ each
+generation. So 
+
+$$ H_t = (1 - 1 / 2N_{e})^{t} H_o $$
+
+...
+
+ -->
+
+<h2 id="why-hw-is-relevant-to-phylogenetics">Why HW is relevant to phylogenetics<a class="headerlink" href="#why-hw-is-relevant-to-phylogenetics" title="Permanent link">&para;</a></h2>
+<p>An <em>idealized population</em> is expected to evolve to Hardy-Weinberg equilibrium
+after a single generation of random mating, given a number of assumptions 
+about the population. This provides a null model from which those assumptions
+can be relaxed, one at a time, to examine their effects on the evolution of populations. The first assumption that tends to be relaxed is that of an 
+infinite population size. In the next lesson, you will see how a model of
+evolution in finite populations leads to the creation of a genealogical 
+pattern connecting ancestors and descendants from one generation to the next.
+As we move into this genealogical realm, keep in mind the assumptions that 
+still underlie our model of evolution within populations.
+These assumptions are inherent throughout most phylogenetic models as well, 
+where one or few samples are expected to sufficiently represent a population
+or species in a tree, based on an implicit model of how populations evolve.</p>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "search.highlight", "search.suggest", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6df46069.min.js"></script>
+      
+        <script src="../../javascripts/extra.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
